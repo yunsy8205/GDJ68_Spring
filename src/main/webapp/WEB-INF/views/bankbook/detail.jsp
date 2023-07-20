@@ -14,6 +14,7 @@
 <body>
 	<%--jsp 주석 --%>
 	<h1>Detail Page</h1>
+	<h1>${num}</h1>
 	
 	<!-- Getter 이름 : 메서드에서 get을 제외하고 첫번째 글자를 소문자로 바꾼 것 (변수명과 동일)-->
 	<!-- 형변환도 알아서 해서 출력해줌 -->
@@ -33,8 +34,8 @@
 		</c:otherwise>
 	</c:choose>
 	
-	<a class="btn btn-danger" href="./update.do?bookNum=${dto.bookNum}">수정</a>
-	<a class="btn btn-danger" href="./delete.do?bookNum=${dto.bookNum}">삭제</a>
+	<a class="btn btn-danger" href="./update?bookNum=${dto.bookNum}">수정</a>
+	<a class="btn btn-danger" href="./delete?bookNum=${dto.bookNum}">삭제</a>
 	<!-- 서브릿으로 이동 -->
 	
 	<%--<c:if test="${dto.bookSale eq 1} }">

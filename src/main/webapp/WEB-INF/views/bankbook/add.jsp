@@ -13,7 +13,7 @@
 
 	<h1 class="mt-5 mb-3 ms-3">Add Page</h1>
 	
-	<form action="./add.do" method="post" class="mx-3">
+	<form action="./add" method="post" class="mx-3">
 		상품명<input type="text" name="bookName" class="form-control"><br>
 		상세설명 <textarea rows="" cols="" name="bookContents" class="form-control"></textarea><br>
 		<!-- 셋터의 이름을 네임으로 써야함 -->
@@ -21,6 +21,13 @@
 		<p>
 			판매가능 <input type="radio" value="1" checked name="bookSale" class="form-check-input"><br>
 			판매중지 <input type="radio" value="0" name="bookSale" class="form-check-input"><br>
+		</p>
+		
+		<p>
+			축구 <input type="checkbox" value="football" checked name="sports" class="form-check-input"><br>
+			농구 <input type="checkbox" value="basketball" name="sports" class="form-check-input"><br>
+			배구 <input type="checkbox" value="volley" name="sports" class="form-check-input"><br>
+			야구 <input type="checkbox" value="baseball" name="sports" class="form-check-input"><br>
 		</p>
 	
 	<!--<p>

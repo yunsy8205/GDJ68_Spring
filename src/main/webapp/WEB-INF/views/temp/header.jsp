@@ -11,10 +11,10 @@
     		<div class="collapse navbar-collapse" id="navbarSupportedContent">
       		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
         		<li class="nav-item">
-          			<a class="nav-link active" aria-current="page" href="/index.do">Home</a>
+          			<a class="nav-link active" aria-current="page" href="/index">Home</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link active" href="/bankbook/list.do">BankProduct</a>
+          			<a class="nav-link active" href="/bankbook/list">BankProduct</a>
         		</li>
         		<li class="nav-item dropdown">
           			<a a class="nav-link active" href="#">Dropdown</a>
@@ -27,12 +27,12 @@
      			 <nav>
      				<ul class="nav">
      					<c:if test ="${not empty member}">
-     					<li class="nav-item text-white me-3"><a href="/member/logout.do">로그아웃</a></li>
-     					<li class="nav-item text-white me-3"><a href="/member/mypage.do">마이페이지</a></li>
+     					<li class="nav-item text-white me-3"><a href="/member/logout">로그아웃</a></li>
+     					<li class="nav-item text-white me-3"><a href="/member/mypage">마이페이지</a></li>
      					</c:if>
      					<c:if test ="${empty member}">
-     					<li class="nav-item text-white me-3"><a href="/member/login.do">로그인</a></li>
-     					<li class="nav-item text-white me-3"><a href="/member/join.do">회원가입</a></li>
+     					<li class="nav-item text-white me-3"><a href="/member/login">로그인</a></li>
+     					<li class="nav-item text-white me-3"><a href="/member/join">회원가입</a></li>
      					</c:if>
      				</ul>
      			 </nav>

@@ -12,7 +12,7 @@
 <body>
 	<h1>Update Page</h1>
 	
-	<form action="./update.do" method="post" >
+	<form action="./update" method="post" >
 	<!-- disable는 보여주는 데 수정이 불가능하고 파라미터로 넘길수 없다. readonly는 보여주는 데 수정이 불가능하고 파라미터로 넘길수 있다. 
 	     hidden은 보이지 않지만 파라미터로 넘어감-->
 		<input type="hidden" name="bookNum" value="${dto.bookNum}"><br>
