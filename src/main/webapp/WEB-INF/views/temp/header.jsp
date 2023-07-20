@@ -14,7 +14,7 @@
           			<a class="nav-link active" aria-current="page" href="/index.do">Home</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link active" href="/bankbook/list.do">BankProduct</a>
+          			<a class="nav-link active" href="/bankbook/list">BankProduct</a>
         		</li>
         		<li class="nav-item dropdown">
           			<a a class="nav-link active" href="#">Dropdown</a>

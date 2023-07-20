@@ -13,7 +13,7 @@
 
 	<h1 class="mt-5 mb-3 ms-3">Add Page</h1>
 	
-	<form action="./add.do" method="post" class="mx-3">
+	<form action="./add" method="post" class="mx-3">
 		상품명<input type="text" name="bookName" class="form-control"><br>
 		상세설명 <textarea rows="" cols="" name="bookContents" class="form-control"></textarea><br>
 		<!-- 셋터의 이름을 네임으로 써야함 -->

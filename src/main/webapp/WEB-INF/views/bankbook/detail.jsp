@@ -33,8 +33,8 @@
 		</c:otherwise>
 	</c:choose>
 	
-	<a class="btn btn-danger" href="./update.do?bookNum=${dto.bookNum}">수정</a>
-	<a class="btn btn-danger" href="./delete.do?bookNum=${dto.bookNum}">삭제</a>
+	<a class="btn btn-danger" href="./update?bookNum=${dto.bookNum}">수정</a>
+	<a class="btn btn-danger" href="./delete?bookNum=${dto.bookNum}">삭제</a>
 	<!-- 서브릿으로 이동 -->
 	
 	<%--<c:if test="${dto.bookSale eq 1} }">

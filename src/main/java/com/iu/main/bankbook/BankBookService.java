@@ -8,9 +8,9 @@ public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	
-	public void service() {
-		System.out.println("service");
-		bankBookDAO.dao();
+	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception{
+		return bankBookDAO.getDetail(bankBookDTO);
 	}
+	
 	
 }
