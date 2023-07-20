@@ -7,7 +7,5 @@
  	<select id="getDetail" resultType="com.iu.main.bankbook.BankBookDTO" parameterType="com.iu.main.bankbook.BankBookDTO">
  		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
  	</select>
-	
-	
 
   </mapper>
