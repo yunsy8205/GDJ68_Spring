@@ -17,24 +17,17 @@
 	
 	<!-- Getter 이름 : 메서드에서 get을 제외하고 첫번째 글자를 소문자로 바꾼 것 (변수명과 동일)-->
 	<!-- 형변환도 알아서 해서 출력해줌 -->
-	<h1>${requestScope.dto.bookName}</h1>
-	<div>
-		${dto.bookContents}
-	</div>
-	<h1>${dto.bookRate}</h1>
 	<!-- requestScope는 생략가능 (같은 이름을 가진경우 안될 수도 있다.)-->
-	
-	<c:choose>
-		<c:when test="${dto.bookSale eq 1} }">
-			<h1>판매중</h1>
-		</c:when>
-		<c:otherwise>
-			<h1>판매종료</h1>
-		</c:otherwise>
-	</c:choose>
-	
-	<a class="btn btn-danger" href="./update?bookNum=${dto.bookNum}">수정</a>
-	<a class="btn btn-danger" href="./delete?bookNum=${dto.bookNum}">삭제</a>
+	<h1>번호 : ${dto.studNum}</h1>
+	<h1>이름 : ${dto.studName}</h1>
+	<h1>국어점수 : ${dto.studKor}</h1>
+	<h1>영어점수 : ${dto.studEng}</h1>
+	<h1>수학점수 : ${dto.studMath}</h1>
+	<h1>합계 : ${dto.studTotal}</h1>
+	<h1>평균 : ${dto.studAvg}</h1>
+		
+	<a class="btn btn-danger" href="./update?studNum=${dto.studNum}">수정</a>
+	<a class="btn btn-danger" href="./delete?studNum=${dto.studNum}">삭제</a>
 	<!-- 서브릿으로 이동 -->
 	
 </body>

@@ -19,6 +19,10 @@ public class StudentDAO {
 	public List<StudentDTO> getList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
+	
+	public StudentDTO getDetail(StudentDTO studentDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getDetail", studentDTO);
+	}
 			
 	
 	

@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iu.main.bankbook.BankBookDTO;
+import com.iu.main.bankbook.BankBookService;
+
 @Controller
 @RequestMapping("/student/*")
 public class StudentController {
@@ -20,7 +23,14 @@ public class StudentController {
 		List<StudentDTO> ar	= studentService.getList();
 		model.addAttribute("list", ar);
 		
-		return "student/list";
+		return "student/list";	
+	}
+	
+	@RequestMapping(value = "detail", method=RequestMethod.GET)
+	public String getDetail(StudentDTO studentDTO, Model model)throws Exception{
+		studentDTO = studentService.getDetail(studentDTO);
+		model.addAttribute("dto", studentDTO);
 		
+		return "student/detail";
 	}
 }

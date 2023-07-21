@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iu.main.bankbook.BankBookDAO;
+import com.iu.main.bankbook.BankBookDTO;
 
 @Service
 public class StudentService {
@@ -15,6 +16,10 @@ public class StudentService {
 	
 	public List<StudentDTO> getList() throws Exception{
 		return studentDAO.getList();	
+	}
+	
+	public StudentDTO getDetail(StudentDTO studentDTO)throws Exception{
+		return studentDAO.getDetail(studentDTO);
 	}
 
 }
