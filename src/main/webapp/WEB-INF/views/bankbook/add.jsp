@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<h1 class="mt-5 mb-3 ms-3">Add Page</h1>
+	<h1 class="mt-5 mb-3 ms-3 text-center">Add Page</h1>
 	
 	<form action="./add" method="post" class="mx-3">
 		상품명<input type="text" name="bookName" class="form-control"><br>

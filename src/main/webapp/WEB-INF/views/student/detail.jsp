@@ -37,12 +37,5 @@
 	<a class="btn btn-danger" href="./delete?bookNum=${dto.bookNum}">삭제</a>
 	<!-- 서브릿으로 이동 -->
 	
-	<%--<c:if test="${dto.bookSale eq 1} }">
-		<h1>판매중</h1>
-	</c:if>
-	<!-- eq도 되고 ==도 가능 -->
-	<c:if test="${dto.bookSale eq 0}">
-		<h1>판매종료</h1>
-	</c:if>--%>
 </body>
 </html>

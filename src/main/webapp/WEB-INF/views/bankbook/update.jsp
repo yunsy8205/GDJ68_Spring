@@ -10,7 +10,7 @@
 <c:import url="../temp/header.jsp"></c:import>
 </head>
 <body>
-	<h1>Update Page</h1>
+	<h1 class="text-center">Update Page</h1>
 	
 	<form action="./update" method="post" >
 	<!-- disable는 보여주는 데 수정이 불가능하고 파라미터로 넘길수 없다. readonly는 보여주는 데 수정이 불가능하고 파라미터로 넘길수 있다. 
