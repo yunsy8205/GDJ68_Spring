@@ -20,7 +20,7 @@
 		<label for="name">이름</label>
 		<input type="text" name="name" id="name" class="form-control"><br>
 		<label for="email">e-mail</label>
-		<input type="text" name="email" id="email" class="form-control"><br>
+		<input type="email" name="email" id="email" class="form-control"><br>
 		<label for="birth">생년월일</label>
 		<input type="date" name="birth" id="birth" class="form-control"><br>
 		

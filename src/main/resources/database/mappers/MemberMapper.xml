@@ -10,6 +10,11 @@
   		WHERE ID=#{id} AND PW=#{pw}
   	</select>
 
-
+	<!-- 회원수정 -->
+	<update id="setMemberUpdate" parameterType="MemberDTO">
+		UPDATE MEMBER_TBL SET
+		PW=#{pw}, NAME=#{name}, EMAIL=#{email}, BIRTH=#{birth}
+		WHERE ID=#{id}
+	</update>
 
   </mapper>
