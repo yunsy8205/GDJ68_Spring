@@ -13,4 +13,25 @@
   		SELECT STUDNUM, STUDNAME, STUDKOR, STUDENG, STUDMATH, STUDTOTAL, STUDAVG FROM STUDENTS WHERE STUDNUM=#{studNum}
   	</select>
   	
+  	<delete id="setDelete" parameterType="com.iu.main.student.StudentDTO">
+		DELETE STUDENTS WHERE STUDNUM=#{studNum}
+  	</delete>
+  	
+  	<update id="setUpdate" parameterType="com.iu.main.student.StudentDTO">
+  		UPDATE STUDENTS SET
+		STUDNUM=#{studNum},
+		STUDNAME=#{studName},
+		STUDKOR=#{studKor},
+		STUDENG=#{studEng},
+		STUDMATH=#{studMath},
+		STUDTOTAL=#{studTotal},
+		STUDAVG=#{studAvg}
+		WHERE STUDNUM=#{studNum}
+  	</update>
+  	
+  	<insert id="setAdd" parameterType="com.iu.main.student.StudentDTO">
+  		INSERT INTO STUDENTS
+		VALUES (STUDENT_SEQ.NEXTVAL, #{studName}, #{studKor}, #{studEng}, #{studMath}, #{studTotal}, #{studAvg})
+  	</insert>
+
   </mapper>

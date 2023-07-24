@@ -38,19 +38,30 @@ public class StudentDTO {
 	public void setStudMath(Integer studMath) {
 		this.studMath = studMath;
 	}
+
+	public void setStudTotal(Integer total) {
+		this.studTotal = total;
+	}
+	public void setStudAvg(Double avg) {
+		this.studAvg = avg;
+	}
+	
+	public void setStudTotal() {
+		this.studTotal = (int)studKor+(int)studEng+(int)studMath;
+		System.out.println("studTotal");
+	}
+	public void setStudAvg() {
+		this.studAvg = ((int)studTotal)/3.0;
+	}
+	
 	public Integer getStudTotal() {
 		return studTotal;
-	}
-	public void setStudTotal(Integer studTotal) {
-		this.studTotal = studTotal;
 	}
 	public Double getStudAvg() {
 		return studAvg;
 	}
-	public void setStudAvg(Double studAvg) {
-		this.studAvg = studAvg;
-	}
-	
+
+
 	private Integer studTotal;
 	private Double studAvg;
 

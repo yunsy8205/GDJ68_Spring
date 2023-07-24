@@ -21,5 +21,23 @@ public class StudentService {
 	public StudentDTO getDetail(StudentDTO studentDTO)throws Exception{
 		return studentDAO.getDetail(studentDTO);
 	}
+	
+	public int setDelete(StudentDTO studentDTO) throws Exception{
+
+		return studentDAO.setDelete(studentDTO);
+
+	}
+	
+	public int setUpdate(StudentDTO studentDTO) throws Exception{
+
+		return studentDAO.setUpdate(studentDTO);
+
+	}
+	
+	public int setAdd(StudentDTO studentDTO) throws Exception{
+
+		return studentDAO. setAdd(studentDTO);
+
+	}
 
 }
