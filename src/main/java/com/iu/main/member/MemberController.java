@@ -53,7 +53,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
 	public String setMemberUpdate(MemberDTO memberDTO, HttpSession session)throws Exception{
-		MemberDTO sessionMember=(MemberDTO)session.getAttribute("member");//session에 member가 있고 그 안에 아이디가 있다.(object 타입)
+		MemberDTO sessionMember=(MemberDTO)session.getAttribute("member");
+		//session에 member가 있고 그 안에 아이디가 있다.(object 타입)
 		memberDTO.setId(sessionMember.getId());//보안을 위해 세션 이용
 		int result = memberService.setMemberUPdate(memberDTO);
 		if(result>0) {
