@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.iu.main.memeber.MemberDAO">
+  <mapper namespace="com.iu.main.member.MemberDAO">
   	<!-- 로그인 -->
   	<select id="getLogin" parameterType="MemberDTO" resultType="MemberDTO">
-  		SELECT * FROM MEMEBER_TBL
+  		SELECT * FROM MEMBER_TBL
   		WHERE ID=#{id} AND PW=#{pw}
   	</select>
 

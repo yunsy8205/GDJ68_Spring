@@ -9,7 +9,15 @@
 <body>
 	<h1>My Page</h1>
 	<div>
-		${member.id} : ${sessionScope.member.name}
+		<p>
+			${member.id} : ${sessionScope.member.name}
+		</p>
+		<p>
+			${member.email}
+		</p>
+		<p>
+			${member.birth}
+		</p>
 	</div>
 </body>
 </html>

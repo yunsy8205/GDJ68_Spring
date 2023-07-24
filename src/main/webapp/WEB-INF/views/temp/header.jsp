@@ -27,12 +27,12 @@
      			 <nav>
      				<ul class="nav">
      					<c:if test ="${not empty member}">
-     					<li class="nav-item text-white me-3"><a href="/member/logout.do">로그아웃</a></li>
-     					<li class="nav-item text-white me-3"><a href="/member/mypage.do">마이페이지</a></li>
+     					<li class="nav-item text-white me-3"><a href="/member/logout">로그아웃</a></li>
+     					<li class="nav-item text-white me-3"><a href="/member/mypage">마이페이지</a></li>
      					</c:if>
      					<c:if test ="${empty member}">
-     					<li class="nav-item text-white me-3"><a href="/member/login.do">로그인</a></li>
-     					<li class="nav-item text-white me-3"><a href="/member/join.do">회원가입</a></li>
+     					<li class="nav-item text-white me-3"><a href="/member/login">로그인</a></li>
+     					<li class="nav-item text-white me-3"><a href="/member/join">회원가입</a></li>
      					</c:if>
      				</ul>
      			 </nav>
