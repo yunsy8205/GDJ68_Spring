@@ -47,8 +47,8 @@ public class StudentDTO {
 	}
 	
 	public void setStudTotal() {
-		this.studTotal = (int)studKor+(int)studEng+(int)studMath;
-		System.out.println("studTotal");
+		this.studTotal = studKor+studEng+studMath;
+
 	}
 	public void setStudAvg() {
 		this.studAvg = ((int)studTotal)/3.0;

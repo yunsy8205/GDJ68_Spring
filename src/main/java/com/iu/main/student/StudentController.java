@@ -67,7 +67,8 @@ public class StudentController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String setAdd(StudentDTO studentDTO) throws Exception{
-
+		studentDTO.setStudTotal();
+		studentDTO.setStudAvg();
 		int result = studentService.setAdd(studentDTO);
 
 		return "redirect:./list";
