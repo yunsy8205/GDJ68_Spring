@@ -16,7 +16,7 @@ public class BankBookDAO {
 	private SqlSession sqlSession;
 	
 	//BankBookMapper와 같은것을 씀
-	private final String NAMESPACE="com.iu.main.bankBook.BankBookDAO.";
+	private final String NAMESPACE="com.iu.main.bankbook.BankBookDAO.";
 	
 	
 	//List
