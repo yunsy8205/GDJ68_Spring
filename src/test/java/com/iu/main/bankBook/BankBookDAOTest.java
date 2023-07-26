@@ -25,7 +25,6 @@ public class BankBookDAOTest extends MyTest{
 			bankBookDTO.setBookSale(1);
 			
 			bankBookDAO.setAdd(bankBookDTO);
-			
 		}
 		System.out.println("Finish");
 	}
