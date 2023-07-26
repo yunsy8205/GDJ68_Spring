@@ -15,7 +15,7 @@ public class BankBookService {
 	private BankBookDAO bankBookDAO;
 	
 	public List<BankBookDTO> getList(Pager pager) throws Exception{
-		Map<String, Integer> map = new HashMap<String, Integer>();
+//		Map<String, Integer> map = new HashMap<String, Integer>();
 		//page     startRow      lastRow
 		//1           1             10
 		//2           11            20

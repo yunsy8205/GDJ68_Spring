@@ -34,6 +34,24 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+		    <li class="page-item">
+		      <a class="page-link" href="./list?page=${pager.startNum-1}" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+			<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+		</c:forEach>
+		    <li class="page-item">
+		      <a class="page-link" href="./list?page=${pager.lastNum+1}" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav><br><br>
 	
 		<a class="btn btn-outline-danger" href="./add">게시물 등록</a>
 	</section>
