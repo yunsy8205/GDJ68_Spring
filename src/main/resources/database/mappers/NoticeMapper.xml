@@ -5,9 +5,9 @@
   
   <mapper namespace="com.iu.main.notice.NoticeDAO">
   
-   	<select id="getTotal" resultType="java.lang.Long">
-  		SELECT COUNT(NUM) FROM NOTICE
-  	</select>
+  <select id="getTotal" resultType="java.lang.Long">
+  	SELECT COUNT(NUM) FROM NOTICE
+  </select>
   
   <select id="getList" resultType="NoticeDTO" parameterType="com.iu.main.util.Pager">
   	SELECT NUM, TITLE, WRITER, CREATEDATE, HIT FROM
