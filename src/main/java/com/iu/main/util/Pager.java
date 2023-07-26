@@ -7,17 +7,63 @@ public class Pager {
 	private Long lastRow;
 	
 	
+	public Long getStartNum() {
+		return startNum;
+	}
+
+	public void setStartNum(Long startNum) {
+		this.startNum = startNum;
+	}
+
+	public Long getLastNum() {
+		return lastNum;
+	}
+
+	public void setLastNum(Long lastNum) {
+		this.lastNum = lastNum;
+	}
+
 	private Long page;
 	//한페이지에 보여질 데이터(row)의 갯수
 	private Long perPage;
 	
+	//시작번호
+	private Long startNum;
+	//끝번호
+	private Long lastNum;
+	
 	public void makePageNum(Long total) {
 		//130 -> 13
 		//131-139 -> 14
+		
+		//1.전체 갯수로 전체 페이지 수 구하기
 		this.totalPage=total/this.getPerPage();//0으로 나누어지는 것 방지
 		if(total%this.getPerPage()!=0) {
 			this.totalPage++;
 		}
+		
+		//2. 전체 페이지수로 전체 block 수 구하기
+		// 한 페이지에 출력할 번호의 갯수
+		long perBlock=5;
+		
+		long totalBlock = this.totalPage/perBlock;
+		if(this.totalPage%perBlock !=0) {
+			totalBlock++;
+		}
+		
+		//3. 현재 page 번호로 블럭번호 구하기
+		// 현재 블럭 번호
+		long curBlock = this.getPage()/perBlock;
+		if(this.getPage()%perBlock !=0) {
+			curBlock++;
+		}
+		
+		//4. 현재 블럭번호의 시작번호와 끝 번호 구하기
+		//curBlock     startNum    lastNum
+		//1             1           5
+		//2             6           10
+		this.startNum=(curBlock-1)*perBlock+1;
+		this.lastNum=curBlock*perBlock;
 	}
 	
 	public Long getTotalPage() {
