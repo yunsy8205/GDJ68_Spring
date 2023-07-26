@@ -30,6 +30,10 @@
 				</c:forEach>
 			</tbody>
 		</table>
+
+		<c:forEach begin="1" end="${pager.totalPage}" var="i">
+			<a href="./list?page=${i}">${i}</a>
+		</c:forEach><br><br>
 	
 		<a class="btn btn-danger" href="./add">상품등록</a>
 	</section>

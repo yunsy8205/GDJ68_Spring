@@ -1,4 +1,4 @@
-package com.iu.main.bankbook;
+package com.iu.main.bankBook;
 
 public class BankBookDTO {
 	
