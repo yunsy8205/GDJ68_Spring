@@ -4,16 +4,29 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.notice.NoticeDAO">
+  <sql id="searchSql">
+    	WHERE NUM>0
+			<if test="kind == 'name'">
+				AND NAME LIKE '%'||#{search}||'%'
+			</if>
+			<if test="kind == 'contents'">
+				AND CONTENTS LIKE '%'||#{search}||'%'
+			</if>
+			<if test="kind == 'title'">
+				AND TITLE LIKE '%'||#{search}||'%'
+			</if>
+  </sql>
   
   <select id="getTotal" resultType="java.lang.Long">
   	SELECT COUNT(NUM) FROM NOTICE
+  	<include refid="searchSql"></include>
   </select>
   
   <select id="getList" resultType="NoticeDTO" parameterType="com.iu.main.util.Pager">
   	SELECT NUM, TITLE, WRITER, CREATEDATE, HIT FROM
   		(SELECT ROWNUM R, N.* FROM
 	  		(SELECT*FROM NOTICE
-	  		WHERE NUM>0
+	  		<include refid="searchSql"></include>
 	  		ORDER BY NUM DESC)N)
 	  WHERE R BETWEEN #{startRow} AND #{lastRow}
   </select>

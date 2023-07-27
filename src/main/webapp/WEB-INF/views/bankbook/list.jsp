@@ -20,7 +20,8 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="d" varStatus="i">
-				<!--list의 크기만큼 반복실행 / d는 변수명 여기서는 전달된 DTO객체 이다.-->
+				<!--아이템에 list라는 속성명을 가진것을 꺼낸다. 변수 d에 넣어서 for문을 돌린다.
+				list의 갯수 만큼-->
 			<tr>
 				<td><a href="./detail.do?bookNum=${d.bookNum}">${d.bookName}</a></td>
 				<!--같은 폴더면 같은 위치
@@ -35,23 +36,36 @@
 		  <ul class="pagination ">
 
 		    <li class="page-item ${pager.pre?'':'disabled'}">
-		      <a class="page-link" href="./list?page=${startNum-1}" aria-label="Previous">
+		      <a class="page-link" href="./list?page=${startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
 
 		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+			<li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 		</c:forEach>
 			<c:if test="${pager.next}">
 		    <li class="page-item">
-		      <a class="page-link" href="./list?page=${pager.lastNum+1}" aria-label="Next">
+		      <a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
 		    </c:if>
 		  </ul>
-		</nav><br><br>
+		</nav>
+			
+		<div class="input-group mb-3">
+			<form action="./list" method="get">
+				<select name="kind" class="form-select" aria-label="Default select example">
+				  <option value="name">Name</option>
+				  <option value="contents">Contents</option>
+				</select>
+		 		 <input type="text" name="search" class="form-control" aria-label="Amount (to the nearest dollar)">
+				<div class="col-auto">
+			    <button type="submit" class="btn btn-primary mb-3">검색</button>
+			   </div>
+		  </form>
+		</div>
 	
 		<a class="btn btn-danger" href="./add">상품등록</a>
 	</section>

@@ -20,10 +20,10 @@ public class BankBookDAO {
 	
 	//BankBookMapper와 같은것을 씀
 	private final String NAMESPACE="com.iu.main.bankBook.BankBookDAO.";
-	
+
 	//total
-	public Long getTotal()throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getTotal");
+	public Long getTotal(Pager pager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);
 	}
 	
 	//List

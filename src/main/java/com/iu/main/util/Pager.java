@@ -2,6 +2,30 @@ package com.iu.main.util;
 
 
 public class Pager {
+	//검색
+	private String kind;
+	private String search;
+	
+	public String getKind() {
+
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(this.search==null) {
+			this.search=""; // sql문이 LIKE '%%'되도록
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 
 	private Long startRow;
 	private Long lastRow;

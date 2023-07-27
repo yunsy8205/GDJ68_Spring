@@ -16,7 +16,7 @@ public class NoticeService {
 	
 	public List<NoticeDTO> getList(Pager pager) throws Exception{
 		pager.makeRowNum();//페이지에 출력할 시작행과 끝행
-		Long total = noticeDAO.getTotal();//행의 총 개수
+		Long total = noticeDAO.getTotal(pager);//행의 총 개수
 		pager.makePageNum(total);//게시물의 갯수(행의 총 갯수)를 이용해 전체페이지수와 전체페이지블럭수 구하기
 								//현재 페이지번호에 맞는 페이지블록번호 구하기
 								//현재 블럭번호의 시작페이지번호아 끝페이지번호 구하기

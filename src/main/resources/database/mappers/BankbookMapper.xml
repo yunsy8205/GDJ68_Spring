@@ -4,9 +4,23 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.bankBook.BankBookDAO"> 
+  <sql id="searchSql">
+    	WHERE BOOKNUM>0
+		
+		<choose>
+
+			<when test="kind == 'name'">
+			AND BOOKNAME LIKE '%'||#{search}||'%'
+			</when>
+			<otherwise>
+			AND BOOKCONTENTS LIKE '%'||#{search}||'%'
+			</otherwise>
+		</choose>
+  </sql>
   
-  	<select id="getTotal" resultType="java.lang.Long">
+  	<select id="getTotal" resultType="java.lang.Long" parameterType="com.iu.main.util.Pager">
   		SELECT COUNT(BOOKNUM) FROM BANKBOOK
+		<include refid="searchSql"></include>
   	</select>
  	
  	<select id="getList" resultType="BankBookDTO" parameterType="com.iu.main.util.Pager">
@@ -14,7 +28,7 @@
 			(SELECT ROWNUM R, B.* FROM
 				(
 					SELECT *FROM BANKBOOK
-					WHERE BOOKNUM>0
+					<include refid="searchSql"></include>	  
 					ORDER BY BOOKNUM DESC
 				)B
 			)
