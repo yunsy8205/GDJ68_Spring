@@ -40,11 +40,21 @@ public class BankBookDAO {
 		return sqlSession.selectOne(NAMESPACE+"getDetail", bankBookDTO);
 		// getDetail은 위에 NAMESPACE의 아이디를 의미한다. 예전 ?에 해당하는 것으로 마지막은 DB에 보내줄 것(DTO) 넘겨줌
 	}	// 익스큐트 쿼리로 보낼지 익스큐트 업데이트로 보낼지는 메서드에서 정함 	
-
+	
+	//시퀀스
+	public long getSequence() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getSequence");
+	}
 	//add
 	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setAdd", bankBookDTO);
 	}
+	
+	//fileadd
+	public int setFileAdd(BankBookFileDTO bankBookFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileAdd", bankBookFileDTO);
+	}
+	
 	
 	//delete
 	public int setDelete(Long num)throws Exception{

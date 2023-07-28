@@ -23,7 +23,7 @@
 		<include refid="searchSql"></include>
   	</select>
  	
- 	<select id="getList" resultType="BankBookDTO" parameterType="com.iu.main.util.Pager">
+ 	<select id="getList" resultMap="getDetailResult" parameterType="com.iu.main.util.Pager">
 		SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM
 			(SELECT ROWNUM R, B.* FROM
 				(
@@ -36,12 +36,44 @@
  	</select>
  	
  	<select id="getDetail" resultType="BankBookDTO" parameterType="BankBookDTO">
- 		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
+ 		SELECT B.*, BF.* 
+ 		FROM BANKBOOK B
+ 			LEFT JOIN
+ 			BANKFILE BF
+ 			ON(B.BOOKNUM=BF.BOOKNUM)
+ 		WHERE B.BOOKNUM=#{bookNum}
+ 	</select>
+ 	
+ 	<resultMap type="BankBookDTO" id="getDetailResult">
+ 		<id column="BOOKNUM" property="bookNum"/>
+ 		<result column="BOOKNAME" property="bookName"/>
+ 		<result column="BOOKCONTENTS" property="bookContents"/>
+ 		<result column="BOOKRATE" property="bookRate"/>
+ 		<result column="BOOKSALE" property="bookSale"/>
+ 		
+ 		<collection property="fileDTOs" javaType="List" ofType="BankBookFileDTO">
+ 			<id column="FILENUM" property="fileName"/>
+ 			<result column="FILNAME" property="fileName"/>
+ 			<result column="ORIGINALNAME" property="originalName"/>
+ 			
+ 		</collection>	
+ 	</resultMap>
+ 	
+ 	<select id="getSequence" resultType="Long">
+ 		SELECT BANK_SEQ.NEXTVAL FROM DUAL
  	</select>
  	
  	<insert id="setAdd" parameterType="BankBookDTO">
+ 		<selectKey keyProperty="bookNum" resultType="Long" order="BEFORE">
+ 			SELECT BANK_SEQ.NEXTVAL FROM DUAL 
+ 		</selectKey>
  		INSERT INTO BANKBOOK
- 		VALUES (BANK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents})
+ 		VALUES (#{bookNum}, #{bookName}, #{bookRate}, #{bookSale}, #{bookContents})
+ 	</insert>
+ 	
+  	<insert id="setFileAdd" parameterType="BankBookFileDTO">
+ 		INSERT INTO BANKFILE
+ 		VALUES (BANK_SEQ.NEXTVAL, #{bookNum}, #{fileName}, #{originalName})
  	</insert>
  	
  	<delete id="setDelete" parameterType="java.lang.Long">

@@ -13,7 +13,7 @@
 
 	<h1 class="mt-5 mb-3 ms-3">Add Page</h1>
 	
-	<form action="./add" method="post" class="mx-3">
+	<form action="./add" method="post" class="mx-3" enctype="multipart/form-data">
 		상품명<input type="text" name="bookName" class="form-control"><br>
 		상세설명 <textarea rows="" cols="" name="bookContents" class="form-control"></textarea><br>
 		<!-- 셋터의 이름을 네임으로 써야함 -->
@@ -22,7 +22,15 @@
 			판매가능 <input type="radio" value="1" checked name="bookSale" class="form-check-input"><br>
 			판매중지 <input type="radio" value="0" name="bookSale" class="form-check-input"><br>
 		</p>
-	
+		
+		<div>
+		<label for="pic">사진첨부</label>
+		<input type="file" name="photos" id="pic" class="form-control"><br>
+		<label for="pic">사진첨부</label>
+		<input type="file" name="photos" id="pic" class="form-control"><br>
+		<label for="pic">사진첨부</label>
+		<input type="file" name="photos" id="pic" class="form-control"><br>
+		</div>
 	<!--<p>
 			<select name="bookSale">
 				<option selected value="1">판매가능</option>

@@ -3,6 +3,7 @@ package com.iu.main.file;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import org.junit.Test;
 
@@ -11,6 +12,16 @@ import com.iu.main.MyTest;
 public class CalendarTest extends MyTest{
 
 	@Test
+	public void test2() {
+		Calendar ca = Calendar.getInstance();
+		Random random = new Random(ca.getTimeInMillis());
+		//시간을 이용해서 일정한 패턴이 없도록 해줌
+		random.nextInt(); //정수 랜덤으로
+		random.nextInt(5); //0~5까지 <패턴이 존재한다.>
+		
+	}
+	
+	//@Test
 	public void test() {
 		// 1/1000밀리세컨드를 이용
 		// 칼렌드라는 클래스가 시간을 담당?

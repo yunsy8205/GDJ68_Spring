@@ -4,15 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.main.member.MemberFileDTO;
+import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
 @Service
 public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
+	
+	@Autowired
+	private FileManager fileManager;
 	
 	public List<BankBookDTO> getList(Pager pager) throws Exception{
 //		Map<String, Integer> map = new HashMap<String, Integer>();
@@ -37,8 +45,30 @@ public class BankBookService {
 		return bankBookDAO.getDetail(bankBookDTO);
 	}
 	
-	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
-		return bankBookDAO.setAdd(bankBookDTO);
+	public int setAdd(BankBookDTO bankBookDTO, MultipartFile [] files, HttpSession session) throws Exception{
+		//long num = bankBookDAO.getSequence();
+		//bankBookDTO.setBookNum(num);
+		int result = bankBookDAO.setAdd(bankBookDTO);
+		String path="/resources/upload/bankbook/";
+		System.out.println("1");
+		for(MultipartFile multipartFile: files) {// 배열이라서 for 문을 사용한다.
+			
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(multipartFile, session, path);
+			BankBookFileDTO bankBookFileDTO = new BankBookFileDTO();
+			bankBookFileDTO.setBookNum(bankBookDTO.getBookNum());
+			bankBookFileDTO.setOriginalName(multipartFile.getOriginalFilename());
+			bankBookFileDTO.setFileName(fileName);
+			
+			result = bankBookDAO.setFileAdd(bankBookFileDTO);
+			
+		}
+		System.out.println(result);
+		System.out.println("22");
+		return result;
 	}
 	
 	public int setDelete(Long num)throws Exception{
