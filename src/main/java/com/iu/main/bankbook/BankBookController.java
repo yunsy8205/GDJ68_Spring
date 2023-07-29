@@ -39,6 +39,8 @@ public class BankBookController {
 		mv.addObject("dto", bankBookDTO);
 		mv.setViewName("bankbook/detail");
 		System.out.println("detail");
+		System.out.println(bankBookDTO.getFileDTOs());
+		System.out.println();
 
 		return mv;
 	}
