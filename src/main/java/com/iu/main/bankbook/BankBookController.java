@@ -33,12 +33,13 @@ public class BankBookController {
 	
 	@RequestMapping(value="detail", method = RequestMethod.GET) //method 생략하면 기본값은 GET
 	public ModelAndView getDetail(BankBookDTO bankBookDTO, ModelAndView mv) throws Exception{
+
 		bankBookDTO=bankBookService.getDetail(bankBookDTO);
 		System.out.println(bankBookDTO.getBookName());
 		mv.addObject("dto", bankBookDTO);
 		mv.setViewName("bankbook/detail");
 		System.out.println("detail");
-		
+
 		return mv;
 	}
 	
@@ -51,7 +52,6 @@ public class BankBookController {
 	@RequestMapping(value="add", method = RequestMethod.POST)
 	public String setAdd(BankBookDTO bankBookDTO, MultipartFile [] photos, HttpSession session) throws Exception{
 		// DTO를 매개변수로 넘기기 위해서는 DTO의 setter의 이름과 파라미터 이름이 동일해야 한다.
-		System.out.println("11");
 		int result = bankBookService.setAdd(bankBookDTO, photos, session);
 		
 		return "redirect:./list"; //리다이렉트 할 때는 redirect 하는 것을 써주어야 한다.

@@ -50,7 +50,6 @@ public class BankBookService {
 		//bankBookDTO.setBookNum(num);
 		int result = bankBookDAO.setAdd(bankBookDTO);
 		String path="/resources/upload/bankbook/";
-		System.out.println("1");
 		for(MultipartFile multipartFile: files) {// 배열이라서 for 문을 사용한다.
 			
 			if(multipartFile.isEmpty()) {
@@ -67,7 +66,6 @@ public class BankBookService {
 			
 		}
 		System.out.println(result);
-		System.out.println("22");
 		return result;
 	}
 	
