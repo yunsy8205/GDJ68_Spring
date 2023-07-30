@@ -1,4 +1,4 @@
-package com.iu.main.bankBook;
+package com.iu.main.bankbook;
 
 import java.util.List;
 

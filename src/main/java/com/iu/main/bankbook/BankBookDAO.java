@@ -1,4 +1,4 @@
-package com.iu.main.bankBook;
+package com.iu.main.bankbook;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class BankBookDAO {
 	private SqlSession sqlSession;
 	
 	//BankBookMapper와 같은것을 씀
-	private final String NAMESPACE="com.iu.main.bankBook.BankBookDAO.";
+	private final String NAMESPACE="com.iu.main.bankbook.BankBookDAO.";
 
 	//total
 	public Long getTotal(Pager pager)throws Exception{
