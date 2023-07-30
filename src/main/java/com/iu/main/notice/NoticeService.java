@@ -2,10 +2,14 @@ package com.iu.main.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-
+import com.iu.main.bankbook.BankBookFileDTO;
+import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
 @Service
@@ -13,6 +17,9 @@ public class NoticeService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
+	
+	@Autowired
+	private FileManager fileManager;
 	
 	public List<NoticeDTO> getList(Pager pager) throws Exception{
 		pager.makeRowNum();//페이지에 출력할 시작행과 끝행
@@ -24,8 +31,26 @@ public class NoticeService {
 		return noticeDAO.getList(pager);
 	}
 	
-	public int setAdd(NoticeDTO noticeDTO) throws Exception{
-		return noticeDAO.setAdd(noticeDTO);
+	public int setAdd(NoticeDTO noticeDTO, MultipartFile [] files, HttpSession session) throws Exception{
+		int result = noticeDAO.setAdd(noticeDTO);
+		String path = "/resources/upload/notice/";
+		
+		for(MultipartFile multipartFile:files) {
+			
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(multipartFile, session, path);
+			NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+			noticeFileDTO.setFileName(fileName);
+			noticeFileDTO.setOriginalName(multipartFile.getOriginalFilename());
+			noticeFileDTO.setNum(noticeDTO.getNum());// 번호가 잘 저장되나?
+			
+			result = noticeDAO.setFileAdd(noticeFileDTO);
+		}
+		
+		return result;
 	}
 	
 	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception{

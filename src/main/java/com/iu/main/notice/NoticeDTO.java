@@ -1,14 +1,30 @@
 package com.iu.main.notice;
 
 import java.sql.Date;
+import java.util.List;
 
 public class NoticeDTO {
 	
 	private Long num;
 	private String title;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	private String writer;
+	private String id;
+	private List<NoticeFileDTO> fileDTOs;
+	
 	public Long getNum() {
 		return num;
+	}
+	public List<NoticeFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<NoticeFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
 	}
 	public void setNum(Long num) {
 		this.num = num;

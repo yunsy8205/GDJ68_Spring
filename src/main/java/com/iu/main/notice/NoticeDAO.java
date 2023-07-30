@@ -17,6 +17,10 @@ public class NoticeDAO {
 	
 	private final String NAMESPACE="com.iu.main.notice.NoticeDAO.";
 	
+	public int setFileAdd(NoticeFileDTO noticeFileDTO)throws Exception {
+		return sqlSession.insert(NAMESPACE+"setFileAdd", noticeFileDTO);
+	}
+	
 	//total : 전체 페이지 수
 	public Long getTotal(Pager pager) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);

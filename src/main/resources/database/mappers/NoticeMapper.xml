@@ -16,6 +16,10 @@
 				AND TITLE LIKE '%'||#{search}||'%'
 			</if>
   </sql>
+  <insert id="setFileAdd" parameterType="NoticeFileDTO">
+  	INSERT INTO NOTICEFILE
+  	VALUES (NOTICE_SEQ.NEXTVAL, #{num}, #{fileName}, #{originalName})
+  </insert>
   
   <select id="getTotal" resultType="java.lang.Long">
   	SELECT COUNT(NUM) FROM NOTICE
@@ -32,14 +36,36 @@
   </select>
   
   <insert id="setAdd" parameterType="NoticeDTO">
+  	<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+ 		SELECT NOTICE_SEQ.NEXTVAL FROM DUAL 
+ 	</selectKey>
   	INSERT INTO NOTICE
-  	VALUES (NOTICE_SEQ.NEXTVAL, #{title}, #{writer}, SYSDATE, 0, #{contents})
+  	VALUES (#{num}, #{title}, #{writer}, SYSDATE, 0, #{contents}, #{writer})
   </insert>
   
-  <select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
-  	SELECT NUM, TITLE, WRITER, CREATEDATE, HIT, CONTENTS FROM NOTICE
-  	WHERE NUM=#{num}
+  <select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
+  	SELECT N.*, NF.*
+  	FROM NOTICE N
+  		LEFT JOIN
+  		NOTICEFILE NF
+  		ON(N.NUM=NF.NUM)
+  	WHERE N.NUM=#{num}
   </select>
+  
+  <resultMap type="NoticeDTO" id="getDetailResult">
+  	<id column="NUM" property="num"/>
+  	<result column="TITLE" property="title"/>
+  	<result column="WRITER" property="writer"/>
+  	<result column="CREATEDATE" property="createDate"/>
+  	<result column="HIT" property="hit"/>
+  	<result column="CONTENTS" property="contents"/>
+  	
+  	<collection property="fileDTOs" javaType="List" ofType="NoticeFileDTO">
+  		<id column="FILENUM" property="fileNum"/>
+  		<result column="FILENAME" property="fileName"/>
+ 		<result column="ORIGINALNAME" property="originalName"/>
+  	</collection>
+  </resultMap>
   
   <update id="setUpdate" parameterType="NoticeDTO">
   	UPDATE NOTICE SET

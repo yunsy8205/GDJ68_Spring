@@ -65,7 +65,7 @@ public class BankBookService {
 			result = bankBookDAO.setFileAdd(bankBookFileDTO);
 			
 		}
-		System.out.println(result);
+
 		return result;
 	}
 	
