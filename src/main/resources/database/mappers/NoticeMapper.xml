@@ -7,7 +7,7 @@
   <sql id="searchSql">
     	WHERE NUM>0
 			<if test="kind == 'name'">
-				AND NAME LIKE '%'||#{search}||'%'
+				AND WRITER LIKE '%'||#{search}||'%'
 			</if>
 			<if test="kind == 'contents'">
 				AND CONTENTS LIKE '%'||#{search}||'%'
@@ -21,7 +21,7 @@
   	VALUES (NOTICE_SEQ.NEXTVAL, #{num}, #{fileName}, #{originalName})
   </insert>
   
-  <select id="getTotal" resultType="java.lang.Long">
+  <select id="getTotal" resultType="java.lang.Long" parameterType="com.iu.main.util.Pager">
   	SELECT COUNT(NUM) FROM NOTICE
   	<include refid="searchSql"></include>
   </select>
@@ -37,7 +37,7 @@
   
   <insert id="setAdd" parameterType="NoticeDTO">
   	<selectKey keyProperty="num" resultType="Long" order="BEFORE">
- 		SELECT NOTICE_SEQ.NEXTVAL FROM DUAL 
+ 		SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
  	</selectKey>
   	INSERT INTO NOTICE
   	VALUES (#{num}, #{title}, #{writer}, SYSDATE, 0, #{contents}, #{writer})

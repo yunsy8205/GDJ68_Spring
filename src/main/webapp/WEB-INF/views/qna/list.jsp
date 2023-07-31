@@ -14,7 +14,7 @@
 <body>
 
 	<section class="container mt-5">
-		<h1 class="mb-3 text-center">NOTICE</h1>
+		<h1 class="mb-3 text-center">Q&A</h1>
 		<table class="table">
 			<thead class="table-dark">
 				<th>NO</th><th>SUBJECT</th><th>NAME</th><th>DATE</th><th>HIT</th>
@@ -70,7 +70,7 @@
 		  </div>
 		  </form>
 		</div>
-		<c:if test ="${not empty member}">
+		<c:if test="${not empty member}">
 			<a class="btn btn-outline-danger" href="./add">게시물 등록</a>
 		</c:if>
 	</section>

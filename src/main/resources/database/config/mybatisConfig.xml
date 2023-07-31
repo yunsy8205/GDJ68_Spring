@@ -12,5 +12,6 @@
 		<typeAlias type="com.iu.main.notice.NoticeFileDTO" alias="NoticeFileDTO"></typeAlias>
 		<typeAlias type="com.iu.main.member.MemberFileDTO" alias="MemberFileDTO"></typeAlias>
 		<typeAlias type="java.util.List" alias="List"></typeAlias>
+		<typeAlias type="com.iu.main.qna.QnaDTO" alias="QnaDTO"></typeAlias>
 	</typeAliases>
 </configuration>

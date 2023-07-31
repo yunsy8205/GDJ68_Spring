@@ -16,8 +16,11 @@
         		<li class="nav-item">
           			<a class="nav-link active" href="/bankbook/list">BankProduct</a>
         		</li>
-        		<li class="nav-item dropdown">
+        		<li class="nav-item">
           			<a a class="nav-link active" href="/notice/list">Notice</a>
+			     </li>
+			     <li class="nav-item">
+          			<a a class="nav-link active" href="/qna/list">Q&A</a>
 			     </li>
 			        <li class="nav-item">
 			          <a class="nav-link disabled">Disabled</a>
