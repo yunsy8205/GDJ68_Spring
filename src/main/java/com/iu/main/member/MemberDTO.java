@@ -8,11 +8,20 @@ public class MemberDTO {
 	//setter, getter
 	//생성자는 여러개 선언 가능하지만 기본생성자는 필수
 	
+	private MemberFileDTO memberFileDTO;
 	private String id;
 	private String pw;
 	private String name;
+	public MemberFileDTO getMemberFileDTO() {
+		return memberFileDTO;
+	}
+	public void setMemberFileDTO(MemberFileDTO memberFileDTO) {
+		this.memberFileDTO = memberFileDTO;
+	}
 	private String email;
 	private Date birth;
+	
+	
 	public String getId() {
 		return id;
 	}

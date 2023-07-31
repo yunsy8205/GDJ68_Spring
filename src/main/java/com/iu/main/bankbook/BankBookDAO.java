@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.iu.main.util.Pager;
 
 @Repository
 public class BankBookDAO {
@@ -17,11 +20,15 @@ public class BankBookDAO {
 	
 	//BankBookMapper와 같은것을 씀
 	private final String NAMESPACE="com.iu.main.bankbook.BankBookDAO.";
-	
+
+	//total
+	public Long getTotal(Pager pager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);
+	}
 	
 	//List
-	public List<BankBookDTO> getList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<BankBookDTO> getList(Pager pager) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}  //selectList를 써서 여러개의 select가 나올 것을 의미함.
 	   //어떤 맴퍼 + 아이디를 통해 어떤 쿼리문을 쓸것인지!
 	
@@ -33,11 +40,21 @@ public class BankBookDAO {
 		return sqlSession.selectOne(NAMESPACE+"getDetail", bankBookDTO);
 		// getDetail은 위에 NAMESPACE의 아이디를 의미한다. 예전 ?에 해당하는 것으로 마지막은 DB에 보내줄 것(DTO) 넘겨줌
 	}	// 익스큐트 쿼리로 보낼지 익스큐트 업데이트로 보낼지는 메서드에서 정함 	
-
+	
+	//시퀀스
+	public long getSequence() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getSequence");
+	}
 	//add
 	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setAdd", bankBookDTO);
 	}
+	
+	//fileadd
+	public int setFileAdd(BankBookFileDTO bankBookFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileAdd", bankBookFileDTO);
+	}
+	
 	
 	//delete
 	public int setDelete(Long num)throws Exception{

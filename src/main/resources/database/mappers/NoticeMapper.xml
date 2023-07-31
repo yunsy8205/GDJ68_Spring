@@ -4,19 +4,68 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.notice.NoticeDAO">
-  <select id="getList" resultType="NoticeDTO">
-  	SELECT NUM, TITLE, WRITER, CREATEDATE, HIT FROM NOTICE ORDER BY CREATEDATE DESC
+  <sql id="searchSql">
+    	WHERE NUM>0
+			<if test="kind == 'name'">
+				AND NAME LIKE '%'||#{search}||'%'
+			</if>
+			<if test="kind == 'contents'">
+				AND CONTENTS LIKE '%'||#{search}||'%'
+			</if>
+			<if test="kind == 'title'">
+				AND TITLE LIKE '%'||#{search}||'%'
+			</if>
+  </sql>
+  <insert id="setFileAdd" parameterType="NoticeFileDTO">
+  	INSERT INTO NOTICEFILE
+  	VALUES (NOTICE_SEQ.NEXTVAL, #{num}, #{fileName}, #{originalName})
+  </insert>
+  
+  <select id="getTotal" resultType="java.lang.Long">
+  	SELECT COUNT(NUM) FROM NOTICE
+  	<include refid="searchSql"></include>
+  </select>
+  
+  <select id="getList" resultType="NoticeDTO" parameterType="com.iu.main.util.Pager">
+  	SELECT NUM, TITLE, WRITER, CREATEDATE, HIT FROM
+  		(SELECT ROWNUM R, N.* FROM
+	  		(SELECT*FROM NOTICE
+	  		<include refid="searchSql"></include>
+	  		ORDER BY NUM DESC)N)
+	  WHERE R BETWEEN #{startRow} AND #{lastRow}
   </select>
   
   <insert id="setAdd" parameterType="NoticeDTO">
+  	<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+ 		SELECT NOTICE_SEQ.NEXTVAL FROM DUAL 
+ 	</selectKey>
   	INSERT INTO NOTICE
-  	VALUES (NOTICE_SEQ.NEXTVAL, #{title}, #{writer}, SYSDATE, 0, #{contents})
+  	VALUES (#{num}, #{title}, #{writer}, SYSDATE, 0, #{contents}, #{writer})
   </insert>
   
-  <select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
-  	SELECT NUM, TITLE, WRITER, CREATEDATE, HIT, CONTENTS FROM NOTICE
-  	WHERE NUM=#{num}
+  <select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
+  	SELECT N.*, NF.*
+  	FROM NOTICE N
+  		LEFT JOIN
+  		NOTICEFILE NF
+  		ON(N.NUM=NF.NUM)
+  	WHERE N.NUM=#{num}
   </select>
+  
+  <resultMap type="NoticeDTO" id="getDetailResult">
+  	<id column="NUM" property="num"/>
+  	<result column="TITLE" property="title"/>
+  	<result column="WRITER" property="writer"/>
+  	<result column="CREATEDATE" property="createDate"/>
+  	<result column="HIT" property="hit"/>
+  	<result column="CONTENTS" property="contents"/>
+  	
+  	<collection property="fileDTOs" javaType="List" ofType="NoticeFileDTO">
+  		<id column="FILENUM" property="fileNum"/>
+  		<result column="FILENAME" property="fileName"/>
+ 		<result column="ORIGINALNAME" property="originalName"/>
+  	</collection>
+  </resultMap>
   
   <update id="setUpdate" parameterType="NoticeDTO">
   	UPDATE NOTICE SET

@@ -43,6 +43,10 @@
 				<td>${notice.hit}</td>
 			</tr>
 		</table>
+		
+		<c:forEach items="${notice.fileDTOs}" var="f">
+			<img alt="" src="../../resources/upload/notice/${f.fileName}">
+		</c:forEach>
 		<a class="btn btn-outline-danger" href="./update?num=${notice.num}">수정</a>
 		<a class="btn btn-outline-danger" href="./delete?num=${notice.num}">삭제</a>
 		<!-- 서브릿으로 이동 -->

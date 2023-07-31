@@ -10,6 +10,9 @@
 	<h1>My Page</h1>
 	<div>
 		<p>
+			<img alt="" src="../resources/upload/member/${member.memberFileDTO.fileName}">
+		</p>
+		<p>
 			${member.id} : ${sessionScope.member.name}
 		</p>
 		<p>

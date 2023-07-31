@@ -2,13 +2,19 @@ package com.iu.main.bankbook;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.iu.main.util.Pager;
 
 @Controller
 @RequestMapping("/bankbook/*")
@@ -17,21 +23,25 @@ public class BankBookController {
 	private BankBookService bankBookService;
 	
 	@RequestMapping(value="list", method = RequestMethod.GET)
-	public String getList(Model model) throws Exception{
-		List<BankBookDTO> ar =bankBookService.getList();
+	public String getList(Pager pager, Model model) throws Exception{
+		List<BankBookDTO> ar =bankBookService.getList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 	
 		return "bankbook/list";
 	}
 	
 	@RequestMapping(value="detail", method = RequestMethod.GET) //method 생략하면 기본값은 GET
 	public ModelAndView getDetail(BankBookDTO bankBookDTO, ModelAndView mv) throws Exception{
+
 		bankBookDTO=bankBookService.getDetail(bankBookDTO);
 		System.out.println(bankBookDTO.getBookName());
 		mv.addObject("dto", bankBookDTO);
 		mv.setViewName("bankbook/detail");
 		System.out.println("detail");
-		
+		System.out.println(bankBookDTO.getFileDTOs());
+		System.out.println();
+
 		return mv;
 	}
 	
@@ -42,9 +52,9 @@ public class BankBookController {
 	
 	//db insert
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public String setAdd(BankBookDTO bankBookDTO) throws Exception{
+	public String setAdd(BankBookDTO bankBookDTO, MultipartFile [] photos, HttpSession session) throws Exception{
 		// DTO를 매개변수로 넘기기 위해서는 DTO의 setter의 이름과 파라미터 이름이 동일해야 한다.
-		int result = bankBookService.setAdd(bankBookDTO);
+		int result = bankBookService.setAdd(bankBookDTO, photos, session);
 		
 		return "redirect:./list"; //리다이렉트 할 때는 redirect 하는 것을 써주어야 한다.
 				                 //모델앤드뷰는 url 위치로 가면서 삭제됨 
