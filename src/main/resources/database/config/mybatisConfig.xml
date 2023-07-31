@@ -8,10 +8,10 @@
 		<typeAlias type="com.iu.main.bankbook.BankBookDTO" alias="BankBookDTO"></typeAlias>
 		<typeAlias type="com.iu.main.bankbook.BankBookFileDTO" alias="BankBookFileDTO"></typeAlias>
 		<typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"></typeAlias>
-		<typeAlias type="com.iu.main.notice.NoticeDTO" alias="NoticeDTO"></typeAlias>
-		<typeAlias type="com.iu.main.notice.NoticeFileDTO" alias="NoticeFileDTO"></typeAlias>
+		<typeAlias type="com.iu.main.board.notice.NoticeDTO" alias="NoticeDTO"></typeAlias>
+		<typeAlias type="com.iu.main.board.notice.NoticeFileDTO" alias="NoticeFileDTO"></typeAlias>
 		<typeAlias type="com.iu.main.member.MemberFileDTO" alias="MemberFileDTO"></typeAlias>
 		<typeAlias type="java.util.List" alias="List"></typeAlias>
-		<typeAlias type="com.iu.main.qna.QnaDTO" alias="QnaDTO"></typeAlias>
+		<typeAlias type="com.iu.main.board.qna.QnaDTO" alias="QnaDTO"></typeAlias>
 	</typeAliases>
 </configuration>

@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="carousel-item">
-      <img src="./resources/images/6704c13121f060ee770a44b941cd1332150308.jpg" class="d-block w-100" alt="...">
+      <img src="./resources/images/01cc6202b2feb87a78fc61aa8bb4f2ed150308.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Some representative placeholder content for the third slide.</p>

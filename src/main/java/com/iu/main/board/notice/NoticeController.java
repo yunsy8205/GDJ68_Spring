@@ -1,4 +1,4 @@
-package com.iu.main.notice;
+package com.iu.main.board.notice;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.main.board.BoardDTO;
 import com.iu.main.util.Pager;
 
 @Controller
@@ -24,7 +25,7 @@ public class NoticeController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model) throws Exception{
 		// 파라미터로 받은 page Pager 안의 멤버변수 page에 저장
-		List<NoticeDTO> ar = noticeService.getList(pager);
+		List<BoardDTO> ar = noticeService.getList(pager);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
@@ -46,14 +47,14 @@ public class NoticeController {
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public String getDetail(NoticeDTO noticeDTO, Model model) throws Exception{
-		noticeDTO = noticeService.getDetail(noticeDTO);
-		model.addAttribute("notice", noticeDTO);
+		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
+		model.addAttribute("notice", boardDTO);
 		return "board/detail";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String setUpdate(NoticeDTO noticeDTO, Model model) throws Exception{
-		noticeDTO=noticeService.getDetail(noticeDTO);
+		BoardDTO boardDTO=noticeService.getDetail(noticeDTO);
 		model.addAttribute("notice", noticeDTO);
 		return "board/update";
 	}

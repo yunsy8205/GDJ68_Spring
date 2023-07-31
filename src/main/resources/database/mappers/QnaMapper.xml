@@ -3,11 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.iu.main.qna.QnaDAO">
+  <mapper namespace="com.iu.main.board.qna.QnaDAO">
     <sql id="searchSql">
     	WHERE NUM>0
 			<if test="kind == 'name'">
-				AND WRITER LIKE '%'||#{search}||'%'
+				AND NAME LIKE '%'||#{search}||'%'
 			</if>
 			<if test="kind == 'contents'">
 				AND CONTENTS LIKE '%'||#{search}||'%'
@@ -22,7 +22,7 @@
   	<include refid="searchSql"></include>
   </select>
   
-  <select id="getList" resultType="QnaDTO" parameterType="com.iu.main.util.Pager">
+  <select id="getList" resultMap="getDetailResult" parameterType="com.iu.main.util.Pager">
   	SELECT NUM, TITLE, WRITER, CREATEDATE, HIT FROM
   		(SELECT ROWNUM R, Q.* FROM
   			(SELECT*FROM QNA
@@ -31,5 +31,29 @@
   	WHERE R BETWEEN #{startRow} AND #{lastRow}
   </select>
   
+   <resultMap type="QnaDTO" id="getDetailResult">
+  	<id column="NUM" property="num"/>
+  	<result column="TITLE" property="subject"/>
+  	<result column="WRITER" property="name"/>
+  	<result column="CREATEDATE" property="createDate"/>
+  	<result column="HIT" property="hit"/>
+  	<result column="CONTENTS" property="contents"/>
+  	<result column="REF" property="ref"/>
+  	<result column="STEP" property="step"/>
+  	<result column="DEPTH" property="depth"/>
   	
+  </resultMap>
+  
+  <insert id="setAdd" parameterType="QnaDTO">
+  	<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+  		SELECT QNA_SEQ.NEXTVAL FROM DUAL
+  	</selectKey>
+  	INSERT INTO QNA (NUM, WRITER, TITLE, CONTENTS, CREATEDATE, HIT, REF, STEP, DEPTH)
+  	VALUES (#{num}, #{name}, #{subject}, #{contents}, SYSDATE, 0, 0, 0, 0)
+  </insert>
+  
+  <select id="getDetail" resultMap="getDetailResult" parameterType="QnaDTO">
+  	SELECT * FROM QNA WHERE NUM=#{num}
+  </select>
+  
   </mapper>

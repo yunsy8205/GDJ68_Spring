@@ -19,7 +19,7 @@
 		<table class="table my-5">
 			<tr>
 				<th class="table-dark">TITLE</th>
-				<td>${notice.title}</td>
+				<td>${notice.subject}</td>
 	
 			</tr>
 			<tr>
@@ -28,7 +28,7 @@
 			</tr>
 			<tr>
 				<th class="table-dark">NAME</th>
-				<td>${notice.writer}</td>
+				<td>${notice.name}</td>
 			</tr>
 			<tr>
 				<th class="table-dark">CONTENTS</th>

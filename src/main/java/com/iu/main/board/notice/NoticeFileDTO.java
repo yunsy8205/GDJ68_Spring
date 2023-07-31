@@ -1,4 +1,4 @@
-package com.iu.main.notice;
+package com.iu.main.board.notice;
 
 import com.iu.main.file.FileDTO;
 

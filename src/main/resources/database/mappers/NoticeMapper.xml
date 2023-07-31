@@ -3,11 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.iu.main.notice.NoticeDAO">
+  <mapper namespace="com.iu.main.board.notice.NoticeDAO">
   <sql id="searchSql">
     	WHERE NUM>0
 			<if test="kind == 'name'">
-				AND WRITER LIKE '%'||#{search}||'%'
+				AND NAME LIKE '%'||#{search}||'%'
 			</if>
 			<if test="kind == 'contents'">
 				AND CONTENTS LIKE '%'||#{search}||'%'
@@ -26,13 +26,14 @@
   	<include refid="searchSql"></include>
   </select>
   
-  <select id="getList" resultType="NoticeDTO" parameterType="com.iu.main.util.Pager">
+  <select id="getList" resultMap="getDetailResult" parameterType="com.iu.main.util.Pager">
   	SELECT NUM, TITLE, WRITER, CREATEDATE, HIT FROM
   		(SELECT ROWNUM R, N.* FROM
 	  		(SELECT*FROM NOTICE
 	  		<include refid="searchSql"></include>
 	  		ORDER BY NUM DESC)N)
 	  WHERE R BETWEEN #{startRow} AND #{lastRow}
+  
   </select>
   
   <insert id="setAdd" parameterType="NoticeDTO">
@@ -40,7 +41,7 @@
  		SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
  	</selectKey>
   	INSERT INTO NOTICE
-  	VALUES (#{num}, #{title}, #{writer}, SYSDATE, 0, #{contents}, #{writer})
+  	VALUES (#{num}, #{subject}, #{name}, SYSDATE, 0, #{contents}, #{name})
   </insert>
   
   <select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
@@ -54,8 +55,8 @@
   
   <resultMap type="NoticeDTO" id="getDetailResult">
   	<id column="NUM" property="num"/>
-  	<result column="TITLE" property="title"/>
-  	<result column="WRITER" property="writer"/>
+  	<result column="TITLE" property="subject"/>
+  	<result column="WRITER" property="name"/>
   	<result column="CREATEDATE" property="createDate"/>
   	<result column="HIT" property="hit"/>
   	<result column="CONTENTS" property="contents"/>
@@ -69,7 +70,7 @@
   
   <update id="setUpdate" parameterType="NoticeDTO">
   	UPDATE NOTICE SET
-  	TITLE=#{title}, WRITER=#{writer}, CONTENTS=#{contents}
+  	TITLE=#{subject}, WRITER=#{name}, CONTENTS=#{contents}
   	WHERE NUM=#{num}
   </update>
   
