@@ -43,13 +43,16 @@
 				<td>${notice.hit}</td>
 			</tr>
 		</table>
-		
+
 		<c:forEach items="${notice.fileDTOs}" var="f">
-			<img alt="" src="../../resources/upload/notice/${f.fileName}">
+			<img alt="" src="../../resources/upload/${board}/${f.fileName}">
 		</c:forEach>
+		
 		<a class="btn btn-outline-danger" href="./update?num=${notice.num}">수정</a>
 		<a class="btn btn-outline-danger" href="./delete?num=${notice.num}">삭제</a>
-		<!-- 서브릿으로 이동 -->
+		<c:if test="${board ne 'notice'}">
+		<a class="btn btn-outline-danger" href="./reply?num=${notice.num}">답글</a>
+		</c:if><!-- 서브릿으로 이동 -->
 	</section>
 	
 </body>

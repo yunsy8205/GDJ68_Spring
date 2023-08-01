@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.main.board.BoardDTO;
 import com.iu.main.board.BoardService;
 import com.iu.main.board.notice.NoticeDAO;
+import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
 @Service
@@ -18,6 +19,8 @@ public class QnaService implements BoardService{
 	
 	@Autowired
 	private QnaDAO qnaDAO;
+	@Autowired
+	private FileManager fileManager;
 	
 	public List<BoardDTO> getList(Pager pager)throws Exception{
 
@@ -35,20 +38,70 @@ public class QnaService implements BoardService{
 
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = qnaDAO.setAdd(boardDTO);
+		String path = "/resources/upload/qna/";
+		
+		for(MultipartFile multipartFile:files) {
+			
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(multipartFile, session, path);
+			QnaFileDTO qnaFileDTO = new QnaFileDTO();
+			qnaFileDTO.setFileName(fileName);
+			qnaFileDTO.setOriginalName(multipartFile.getOriginalFilename());
+			qnaFileDTO.setNum(boardDTO.getNum());
+			
+			result = qnaDAO.setFileAdd(qnaFileDTO);
+			
+		}
+		return result;
 	}
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setUpdate(boardDTO);
 	}
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return qnaDAO.setDelete(boardDTO);
+	}
+	
+	public int setReplyAdd(QnaDTO qnaDTO, MultipartFile [] files, HttpSession session)throws Exception{
+		BoardDTO parentDTO = new BoardDTO();
+		parentDTO.setNum(qnaDTO.getNum());
+		
+		parentDTO = qnaDAO.getDetail(parentDTO);
+		QnaDTO p = (QnaDTO)parentDTO;
+		qnaDTO.setRef(p.getRef());
+		qnaDTO.setStep(p.getStep()+1);
+		qnaDTO.setDepth(p.getDepth()+1);
+		
+		int result = qnaDAO.setStepUpdate(p);
+		
+		result = qnaDAO.setReplyAdd(qnaDTO);
+		//file 저장
+		String path = "/resources/upload/qna/";
+		
+		for(MultipartFile multipartFile:files) {
+			
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(multipartFile, session, path);
+			QnaFileDTO qnaFileDTO = new QnaFileDTO();
+			qnaFileDTO.setFileName(fileName);
+			qnaFileDTO.setOriginalName(multipartFile.getOriginalFilename());
+			qnaFileDTO.setNum(qnaDTO.getNum());
+			
+			result = qnaDAO.setFileAdd(qnaFileDTO);
+			
+		}
+		return result;
 	}
 
 }

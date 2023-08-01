@@ -37,16 +37,30 @@ public class QnaDAO implements BoardDAO{
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE+"setUpdate", boardDTO);
 	}
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
 	}
+
 	@Override
 	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public int setFileAdd(QnaFileDTO qnaFileDTO)throws Exception{
+		
+		return sqlSession.insert(NAMESPACE+"setFileAdd", qnaFileDTO);
+	}
+	
+	public int setReplyAdd(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setReplyAdd", qnaDTO);
+	}
+	
+	public int setStepUpdate(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"setStepUpdate", qnaDTO);
+	}
+	
 }

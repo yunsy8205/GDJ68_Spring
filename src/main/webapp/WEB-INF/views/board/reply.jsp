@@ -11,11 +11,12 @@
 </head>
 <body>
 
-	<h1 class="text-center mt-5 mb-3 ms-3">Add Page</h1>
+	<h1 class="text-center mt-5 mb-3 ms-3">답글</h1>
 	
-	<form action="./add" method="post" class="mx-3" enctype="multipart/form-data">
+	<form action="./reply" method="post" class="mx-3" enctype="multipart/form-data">
 		제목<input type="text" name="subject" class="form-control"><br>
 		<input type="hidden" name="name" value="${sessionScope.member.id}" class="form-control">
+		<input type="hidden" name="num" value="${num}" class="form-control">
 		내용 <textarea rows="" cols="" name="contents" class="form-control"></textarea><br>
 
 		<div>

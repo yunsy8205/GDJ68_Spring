@@ -14,19 +14,23 @@
 <body>
 
 	<section class="container mt-5">
-		<h1 class="mb-3 text-center">NOTICE</h1>
+		<h1 class="mb-3 text-center">${board} List</h1>
 		<table class="table">
 			<thead class="table-dark">
 				<th>NO</th><th>SUBJECT</th><th>NAME</th><th>DATE</th><th>HIT</th>
 			</thead>
 			<tbody class="table-light">
-				<c:forEach items="${list}" var="d" varStatus="i">
+				<c:forEach items="${requestScope.list}" var="d" varStatus="i">
 				<!--list의 크기만큼 반복실행 / d는 변수명 여기서는 전달된 DTO객체 이다.-->
 					<tr class="table-light">
 						<td>${d.num}</td>
-						<td><a href="./detail?num=${d.num}" style="text-decoration:none; color:black;">${d.subject}</a></td>
-						<!--같은 폴더면 같은 위치
-						파라미터 : 클라이언트에서 서버로 보내는 데이타 -->
+						
+						<td><a href="./detail?num=${d.num}" style="text-decoration:none; color:black;">
+						<c:catch>
+						<c:forEach begin="1" end="${d.depth}">--</c:forEach>
+						</c:catch>
+						${d.subject}</a></td>
+					
 						<td>${d.name}</td>
 						<td>${d.createDate}</td>
 						<td>${d.hit}</td>
