@@ -39,7 +39,9 @@
 	
 	<a class="btn btn-danger" href="./update?bookNum=${dto.bookNum}">수정</a>
 	<a class="btn btn-danger" href="./delete?bookNum=${dto.bookNum}">삭제</a>
-	<!-- 서브릿으로 이동 -->
+	<button id="update">수정</button>
+	<button id="del" data-delete-name="bookNum" data-delete-num="${dto.bookNum}">삭제</button>
+	<!-- 사용자 정의 속성 사용! -->
 	
 	<%--<c:if test="${dto.bookSale eq 1} }">
 		<h1>판매중</h1>
@@ -48,5 +50,12 @@
 	<c:if test="${dto.bookSale eq 0}">
 		<h1>판매종료</h1>
 	</c:if>--%>
+
+	<script src="../resources/js/delete.js"></script>
+	<script>
+		setBookNum(${dto.bookNum});
+		// 스크립트 코드가 아니라서 에러가 발생하지만 무시
+	</script>
+
 </body>
 </html>

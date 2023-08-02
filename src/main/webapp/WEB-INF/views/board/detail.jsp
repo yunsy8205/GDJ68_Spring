@@ -50,9 +50,11 @@
 		
 		<a class="btn btn-outline-danger" href="./update?num=${notice.num}">수정</a>
 		<a class="btn btn-outline-danger" href="./delete?num=${notice.num}">삭제</a>
+		<button id="del" data-delete-name="num" data-delete-num="${notice.num}">삭제</button>
 		<c:if test="${board ne 'notice'}">
 		<a class="btn btn-outline-danger" href="./reply?num=${notice.num}">답글</a>
 		</c:if><!-- 서브릿으로 이동 -->
+		<script src="../resources/js/delete.js"></script>
 	</section>
 	
 </body>

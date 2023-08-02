@@ -23,7 +23,7 @@
 				<!--아이템에 list라는 속성명을 가진것을 꺼낸다. 변수 d에 넣어서 for문을 돌린다.
 				list의 갯수 만큼-->
 			<tr>
-				<td><a href="./detail.do?bookNum=${d.bookNum}">${d.bookName}</a></td>
+				<td><a href="./detail?bookNum=${d.bookNum}">${d.bookName}</a></td>
 				<!--같은 폴더면 같은 위치
 				파라미터 : 클라이언트에서 서버로 보내는 데이타 -->
 				<td>${d.bookRate} ${i.index}</td>
