@@ -24,12 +24,13 @@
 			판매중지 <input type="radio" value="0" name="bookSale"><br>
 		</p>
 	
-	<!--<p>
-			<select name="bookSale">
-				<option selected value="1">판매가능</option>
-				<option value="0">판매중지</option>
-			</select>
-		</p>-->
+	<div id="fileList" class="my-5">
+	 <c:forEach items="${dto.fileDTOs}" var="f">
+	 	<div class="input-group mb-3">
+	 	<input type="file" value="${f.originalName}">
+	 	</div>
+	 </c:forEach>
+	</div>
 		
 		<button>수정</button> <!-- 버튼도 타입이 있음 기본은 서브밋 -->
 		<input type="submit" value="수정">
