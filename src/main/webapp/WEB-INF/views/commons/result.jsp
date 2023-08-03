@@ -8,12 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${result gt 0}">
-		<h1>성공</h1>
-	</c:if>
-		<c:if test="${result le 0}">
-		<h1>실패</h1>
-	</c:if>
+	
+	<script type="text/javascript">
+		alert('${message}');
+		location.href="${url}"; // 요청보낼 수 있는 방법 4번째
+	</script>
 
 </body>
 </html>

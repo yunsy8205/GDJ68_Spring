@@ -43,17 +43,17 @@
 		  <ul class="pagination">
 
 		    <li class="page-item ${pager.pre?'':'disabled'}">
-		      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+		      <a class="page-link move" href="" data-num="${pager.startNum-1}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
 
 		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			<li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+			<li class="page-item"><a class="page-link move" href="#" data-num="${i}">${i}</a></li>
 		</c:forEach>
 			<c:if test="${pager.next}">
 		    <li class="page-item">
-		      <a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+		      <a class="page-link move" href="" data-num="${pager.lastNum+1}" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
@@ -62,13 +62,15 @@
 		</nav>
 		
 		<div class="input-group mb-3">
-		<form action="./list" method="get">
-		  <select name="kind" class="form-select" aria-label="Default select example">
-			  <option value="title">Title</option>
-			  <option value="name">Name</option>
-			  <option value="contents">Contents</option>
+		<form action="./list" method="get" id="frm">
+			<input type="hidden" value="${pager.page}" id="page" name="page">
+			<!-- page 추가 -->
+		  <select name="kind" class="form-select" id="k" data-kind="${pager.kind}" aria-label="Default select example">
+			  <option class="kind" value="title">Title</option>
+			  <option class="kind" value="name">Name</option>
+			  <option class="kind" value="contents">Contents</option>
 		  </select>
-		  <input type="text" name="search" class="form-control" aria-label="Amount (to the nearest dollar)">
+		  <input type="text" name="search" value="${pager.search}" class="form-control" aria-label="Amount (to the nearest dollar)">
 		  <div class="col-auto">
 		  	<button type="submit" class="btn btn-primary mb-3">검색</button>
 		  </div>
@@ -78,6 +80,13 @@
 			<a class="btn btn-outline-danger" href="./add">게시물 등록</a>
 		</c:if>
 	</section>
+	<script src="/resources/js/list.js"></script>
+	<!-- <script>
+		setData('${pager.kind}'); 
+		//홑따옴표나 쌍따옴표를 넣어줘야 문자열로 인식 아님 변수로 인식
+		//숫자는 그냥 넣어도됨
+	</script> -->
+	<!-- 절대경로 -->
 
 </body>
 </html>

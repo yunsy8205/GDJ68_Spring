@@ -39,7 +39,7 @@
 	
 	<a class="btn btn-danger" href="./update?bookNum=${dto.bookNum}">수정</a>
 	<a class="btn btn-danger" href="./delete?bookNum=${dto.bookNum}">삭제</a>
-	<button id="update">수정</button>
+	<button id="update" >수정</button>
 	<button id="del" data-delete-name="bookNum" data-delete-num="${dto.bookNum}">삭제</button>
 	<!-- 사용자 정의 속성 사용! -->
 	

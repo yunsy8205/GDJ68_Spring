@@ -7,7 +7,7 @@
     <sql id="searchSql">
     	WHERE NUM>0
 			<if test="kind == 'name'">
-				AND NAME LIKE '%'||#{search}||'%'
+				AND WRITER LIKE '%'||#{search}||'%'
 			</if>
 			<if test="kind == 'contents'">
 				AND CONTENTS LIKE '%'||#{search}||'%'

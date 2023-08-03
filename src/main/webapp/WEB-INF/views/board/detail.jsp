@@ -48,12 +48,17 @@
 			<img alt="" src="../../resources/upload/${board}/${f.fileName}">
 		</c:forEach>
 		
-		<a class="btn btn-outline-danger" href="./update?num=${notice.num}">수정</a>
-		<a class="btn btn-outline-danger" href="./delete?num=${notice.num}">삭제</a>
-		<button id="del" data-delete-name="num" data-delete-num="${notice.num}">삭제</button>
-		<c:if test="${board ne 'notice'}">
-		<a class="btn btn-outline-danger" href="./reply?num=${notice.num}">답글</a>
-		</c:if><!-- 서브릿으로 이동 -->
+		<form id="frm">
+			<input type="hidden" name="num" value="${notice.num}">
+			<!-- <button id="del" data-delete-name="num" data-delete-num="${notice.num}">삭제</button> -->
+			<button data-url="delete" class="c1" id="del">삭제</button>
+			<!-- <a class="btn btn-outline-danger" href="./update?num=${notice.num}">수정</a> -->
+			<button data-url="update" class="c1" id="update">수정</button>
+			<c:if test="${board ne 'notice'}">
+				<!-- <a class="btn btn-outline-danger" href="./reply?num=${notice.num}">답글</a> -->
+				<button data-url="reply" class="c1" id="reply">답글</button>
+			</c:if><!-- 서브릿으로 이동 -->
+		</form>
 		<script src="../resources/js/delete.js"></script>
 	</section>
 	
