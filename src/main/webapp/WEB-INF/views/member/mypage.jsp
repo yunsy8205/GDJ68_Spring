@@ -33,14 +33,26 @@
 	const productList = document.getElementById("productList");
 	let page=1;
 	
+	getlist(1);
+	
+	productList.addEventListener("click", function(event){
+		if(event.target.classList.contains("move")){
+			alert("list");
+		}
+	})
+	
+	function getList(page){
+		
 	fetch("../bookaccount/list?page="+page, {
 		method:"get"
 	})
-	.then((response)=>{return response.text()})//응답받음
+	.then((response)=>{return response.text()
+	})//응답받음
 	.then((r)=>{
 		productList.innerHTML=r;
 		console.log(r);
 	});
+	}
 </script>
 </body>
 </html>
