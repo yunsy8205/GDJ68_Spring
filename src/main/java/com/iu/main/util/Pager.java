@@ -160,7 +160,7 @@ public class Pager {
 	public Long getPerPage() {
 		if(this.perPage==null) {
 			this.perPage=10L;
-		}		// 페이지 값이 없을 경우 디폴트를 1로 넣는다.
+		}		// 페이지 값이 없을 경우 디폴트를 10로 넣는다.
 		return perPage;
 	}
 

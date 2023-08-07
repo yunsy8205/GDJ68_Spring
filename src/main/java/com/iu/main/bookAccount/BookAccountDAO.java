@@ -22,6 +22,10 @@ public class BookAccountDAO {
 		return sqlSession.selectList(NAMESPACE+"getList", map);
 	}
 	
+	public Long getTotal(Map<String, Object> map)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotal", map);
+	}
+	
 	public BookAccountDTO getDetail(BookAccountDTO bookAccountDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getDetail", bookAccountDTO);
 	}

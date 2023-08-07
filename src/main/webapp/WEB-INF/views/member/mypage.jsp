@@ -10,7 +10,7 @@
 	<h1>My Page</h1>
 	<div>
 		<p>
-			<img alt="" src="../../resources/upload/member/${member.memberFileDTO.fileName}">
+			<img alt="" src="../resources/upload/member/${member.memberFileDTO.fileName}">
 		</p>
 		<p>
 			${member.id} : ${sessionScope.member.name}
@@ -33,11 +33,12 @@
 	const productList = document.getElementById("productList");
 	let page=1;
 	
-	getlist(1);
+	getList(1);
 	
 	productList.addEventListener("click", function(event){
 		if(event.target.classList.contains("move")){
-			alert("list");
+			page = event.target.getAttribute("data-num");
+			getList(page);
 		}
 	})
 	

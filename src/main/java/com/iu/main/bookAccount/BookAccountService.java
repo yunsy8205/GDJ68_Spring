@@ -25,6 +25,8 @@ public class BookAccountService {
 		
 		map.put("member", memberDTO);
 		map.put("pager", pager);
+		Long total = bookAccountDAO.getTotal(map);
+		pager.makePageNum(total);
 		
 		return bookAccountDAO.getList(map);
 		

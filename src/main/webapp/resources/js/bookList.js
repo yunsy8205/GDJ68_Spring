@@ -1,4 +1,4 @@
-alert('list');
+
 const list = document.getElementById("list");
 
 list.addEventListener("click", function(){

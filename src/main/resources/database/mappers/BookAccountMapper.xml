@@ -13,6 +13,11 @@
 		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
 	</select>
 	
+	<select id="getTotal" resultType="java.lang.Long" parameterType="Map">
+		SELECT COUNT(ACCOUNTNUM) FROM BOOKACCOUNT
+		WHERE ID =#{member.id}	
+	</select>
+	
 	<select id="getDetail" parameterType="BookAccountDTO" resultType="BookAccountDTO">
 		SELECT * FROM BOOKACCOUNT
 		WHERE ACCOUNTNUM=#{accountNum}
