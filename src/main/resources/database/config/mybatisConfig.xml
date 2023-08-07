@@ -15,5 +15,6 @@
 		<typeAlias type="com.iu.main.board.qna.QnaDTO" alias="QnaDTO"></typeAlias>
 		<typeAlias type="com.iu.main.board.qna.QnaFileDTO" alias="QnaFileDTO"></typeAlias>
 		<typeAlias type="com.iu.main.bookAccount.BookAccountDTO" alias="BookAccountDTO"></typeAlias>
+		<typeAlias type="java.util.Map" alias="Map"/>
 	</typeAliases>
 </configuration>

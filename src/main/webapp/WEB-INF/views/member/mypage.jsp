@@ -10,7 +10,7 @@
 	<h1>My Page</h1>
 	<div>
 		<p>
-			<img alt="" src="../resources/upload/member/${member.memberFileDTO.fileName}">
+			<img alt="" src="../../resources/upload/member/${member.memberFileDTO.fileName}">
 		</p>
 		<p>
 			${member.id} : ${sessionScope.member.name}
@@ -24,5 +24,23 @@
 	</div>
 	
 	<a class="btn btn-primary" href="./memberUpdate">회원수정</a>
+	
+	<div id="productList">
+	
+	</div>
+	
+<script>
+	const productList = document.getElementById("productList");
+	let page=1;
+	
+	fetch("../bookaccount/list?page="+page, {
+		method:"get"
+	})
+	.then((response)=>{return response.text()})//응답받음
+	.then((r)=>{
+		productList.innerHTML=r;
+		console.log(r);
+	});
+</script>
 </body>
 </html>
