@@ -45,11 +45,31 @@
 	<a class="btn btn-danger" href="../bookaccount/add?bookNum=${dto.bookNum}">상품가입</a>
 	<button class="btn btn-danger" id="add">상품가입</button>
 
+	<div id="productList"></div>
+
+	<form action="">
+		<div class="alert alert-light" role="alert">
+			A simple light alert—check it out!
+		  </div>
+	<button class="btn btn-danger" type="button" id="commentbtn">댓글입력</button>
+	</form>
+
 	<script src="../resources/js/delete.js"></script>
 	<script type="text/javascript">
 		setBookNum(${dto.bookNum});
 		// 스크립트 코드가 아니라서 에러가 발생하지만 무시
 		const add = document.getElementById("add");
+		const productList = document.getElementById("productList");
+
+		fetch("../comment/list?bookNum="+bookNum, {
+			method:"get"
+		})
+		.then((response)=>{return response.text()
+		})//응답받음
+		.then((r)=>{
+			
+			productList.innerHTML=r;
+		});
 
 		add.addEventListener("click", function(){
 			//자바스크립트에는 폼태그가 없다. 부트스트랩 모달이용
@@ -76,15 +96,6 @@
 			}
 		});
 
-		fetch("../comment/list?bookNum="+bookNum, {
-		method:"get"
-		})
-		.then((response)=>{return response.text()
-		})//응답받음
-		.then((r)=>{
-			
-			console.log(r);
-		});
 
 
 	</script>
