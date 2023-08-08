@@ -9,4 +9,9 @@
 	SELECT * FROM BOOKCOMMENT WHERE BOOKNUM = #{bookNum}
 </select>
 
+<insert id="setAdd" parameterType="CommentDTO">
+	INSERT INTO BOOKCOMMENT (COMMENTNUM, ID, BOOKNUM, CONTENTS, COMMENTDATE)
+	VALUES (COMMENT_SEQ.NEXTVAL, #{id}, #{bookNum}, #{contents}, SYSDATE)
+</insert>
+
 </mapper>

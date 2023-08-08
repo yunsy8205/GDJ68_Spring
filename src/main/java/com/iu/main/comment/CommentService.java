@@ -14,4 +14,9 @@ public class CommentService {
 	public List<CommentDTO> getList(CommentDTO commentDTO)throws Exception{
 		return commentDAO.getList(commentDTO);
 	}
+	
+	public int setAdd(CommentDTO commentDTO)throws Exception{
+		return commentDAO.setAdd(commentDTO);
+	}
+	
 }

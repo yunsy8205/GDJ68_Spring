@@ -47,29 +47,47 @@
 
 	<div id="productList"></div>
 
-	<form action="">
 		<div class="alert alert-light" role="alert">
-			A simple light alert—check it out!
+			<input type="text" id="contents">
 		  </div>
 	<button class="btn btn-danger" type="button" id="commentbtn">댓글입력</button>
-	</form>
-
+	
 	<script src="../resources/js/delete.js"></script>
 	<script type="text/javascript">
 		setBookNum(${dto.bookNum});
+	
 		// 스크립트 코드가 아니라서 에러가 발생하지만 무시
 		const add = document.getElementById("add");
 		const productList = document.getElementById("productList");
+		const commentbtn = document.getElementById("commentbtn");
+		const contents = document.getElementById("contents");
 
-		fetch("../comment/list?bookNum="+bookNum, {
-			method:"get"
+		bookComment();
+
+		commentbtn.addEventListener("click", function(){
+			fetch("../comment/add?bookNum="+bookNum+"&contents="+contents.value, {method:"get"})
+			.then((response)=>{return response.text()
+			})//응답받음
+			.then((r)=>{
+				
+				if(r==1){
+					bookComment();
+				}
+			});
 		})
-		.then((response)=>{return response.text()
-		})//응답받음
-		.then((r)=>{
-			
-			productList.innerHTML=r;
-		});
+
+		function bookComment(){
+			fetch("../comment/list?bookNum="+bookNum, {
+				method:"get"
+			})
+			.then((response)=>{return response.text()
+			})//응답받음
+			.then((r)=>{
+				
+				productList.innerHTML=r;
+			});
+
+		}
 
 		add.addEventListener("click", function(){
 			//자바스크립트에는 폼태그가 없다. 부트스트랩 모달이용

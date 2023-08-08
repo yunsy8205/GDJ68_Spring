@@ -17,5 +17,9 @@ public class CommentDAO {
 	public List<CommentDTO> getList(CommentDTO commentDTO)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getList", commentDTO);
 	}
+
+	public int setAdd(CommentDTO commentDTO) {
+		return sqlSession.insert(NAMESPACE+"setAdd", commentDTO);
+	}
 	
 }
