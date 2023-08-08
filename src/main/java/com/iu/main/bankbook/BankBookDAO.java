@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +22,15 @@ public class BankBookDAO {
 	
 	//BankBookMapper와 같은것을 씀
 	private final String NAMESPACE="com.iu.main.bankbook.BankBookDAO.";
-
+	
+	public BankBookFileDTO getFileDetail(BankBookFileDTO bankBookFileDTO, HttpSession session) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", bankBookFileDTO);
+	}
+	
+	public int setFileDelete(BankBookFileDTO bankBookFileDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setFileDelete", bankBookFileDTO);
+	}
+	
 	//total
 	public Long getTotal(Pager pager)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);

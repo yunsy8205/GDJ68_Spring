@@ -38,7 +38,9 @@
 	productList.addEventListener("click", function(event){
 		if(event.target.classList.contains("move")){
 			page = event.target.getAttribute("data-num");
+			
 			getList(page);
+			
 		}
 	})
 	
@@ -50,8 +52,8 @@
 	.then((response)=>{return response.text()
 	})//응답받음
 	.then((r)=>{
+		
 		productList.innerHTML=r;
-		console.log(r);
 	});
 	}
 </script>

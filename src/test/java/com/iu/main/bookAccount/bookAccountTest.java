@@ -16,18 +16,18 @@ public class bookAccountTest extends MyTest{
 	@Autowired
 	private BookAccountDAO bookAccountDAO;
 	
-	//@Test
-	public void getListTest() throws Exception{
-		MemberDTO dto = new MemberDTO();
-		dto.setId("111111");
-		List<BookAccountDTO> ar = bookAccountDAO.getList(dto);
-		//0과 ar.size()가 같은지 물어보는 메서드로 assertNotEquals를 사용해도 된다. (서로반대의미)
-		assertNotEquals(0, ar.size());///List는 만들어져서 null이 아니지만(DTO가 null인것)
-									//해당하는 정보가 없다면 사이즈는 0이기때문에 사이즈로 평가한다.
-//		for(int i=0; i< ar.size(); i++) {
-//			System.out.println(ar.get(i).getAccount());
-//		}
-	}
+//	//@Test
+//	public void getListTest() throws Exception{
+//		MemberDTO dto = new MemberDTO();
+//		dto.setId("111111");
+//		List<BookAccountDTO> ar = bookAccountDAO.getList(dto);
+//		//0과 ar.size()가 같은지 물어보는 메서드로 assertNotEquals를 사용해도 된다. (서로반대의미)
+//		assertNotEquals(0, ar.size());///List는 만들어져서 null이 아니지만(DTO가 null인것)
+//									//해당하는 정보가 없다면 사이즈는 0이기때문에 사이즈로 평가한다.
+////		for(int i=0; i< ar.size(); i++) {
+////			System.out.println(ar.get(i).getAccount());
+////		}
+//	}
 	
 	//@Test
 	public void getDetailTest() throws Exception{

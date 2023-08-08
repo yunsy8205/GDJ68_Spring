@@ -38,4 +38,5 @@
 		ACCOUNTBALANCE=#{accountBalance}
 		WHERE ACCOUNTNUM=#{accountNum}
 	</update>
+
 </mapper>

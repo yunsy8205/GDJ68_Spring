@@ -88,5 +88,13 @@
 		BOOKCONTENTS=#{bookContents}
 		WHERE BOOKNUM=#{bookNum}
 	</update>
-
+	
+	<delete id="setFileDelete" parameterType="BankBookFileDTO">
+		DELETE BANKFILE WHERE FILENUM=#{fileNum}
+	</delete>
+	
+	<select id="getFileDetail" parameterType="BankBookFileDTO" resultType="BankBookFileDTO">
+		SELECT FILENUM, FILENAME FROM BANKFILE WHERE FILENUM = #{fileNum}
+	</select>
+		
   </mapper>

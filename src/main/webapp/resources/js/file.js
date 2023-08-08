@@ -1,8 +1,39 @@
  
 const btn2 = document.getElementById("btn2");
 const fileList = document.getElementById("fileList");
+const deletes = document.getElementsByClassName("deletes");
+
+//------------------------------------------
+// 새로운 div 내에서
+for(del of deletes){
+    del.addEventListener("click", function(){
+        let num = this.getAttribute("data-delete-num");
+        let check = confirm("삭제시 복구 불가");
+
+        if(check){
+            fetch("./fileDelete?fileNum="+num, {method:"get"})
+                .then((result)=>{return result.text()})
+                .then((r)=>{
+                    if(r.trim()=='1'){
+                        console.log(this.previousSibling.previousSibling.remove());
+                        //previousSibling 한번 올라간다는 의미
+                        this.remove();
+                        count--;
+                    }
+                })// 쉼표는 더하기
+        }
+    });
+}
+
+
+let max =5;
 
 let count = 0;
+if(deletes != null){
+    count=deletes.length;
+    max=3;
+}
+
 let idx=0;
 // 부모한테 이벤트를 걸고 그 이벤트를 새로 생긴 자식한테 위임해 준다.
 fileList.addEventListener("click", function(event){//event 객체를 받음
@@ -15,7 +46,7 @@ fileList.addEventListener("click", function(event){//event 객체를 받음
 })
 
 btn2.addEventListener("click", function(){
-    if(count<5){
+    if(count<max){
         let d = document.createElement("div");
         let t = document.createAttribute("class");
         let input = document.createElement("input");
@@ -57,6 +88,11 @@ btn2.addEventListener("click", function(){
         idx++;
         count++;
     }else{
-        alert("파일추가는 다섯개 이하로만 가능합니다.")
+        if(deletes != null){
+            alert("파일추가는 세개 이하로만 가능합니다.")
+        }else{
+            alert("파일추가는 다섯개 이하로만 가능합니다.")
+
+        }
     }
 })

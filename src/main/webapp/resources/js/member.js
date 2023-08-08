@@ -13,25 +13,45 @@ const out6 = document.getElementById("out6");
 const btn = document.getElementById("btn");
 const frm = document.getElementById("frm");
 
-let checkResults=[false,false,false,false,false,false];//배열을 이용할 수도있다.
+let checkResults=[false,false,false,false,false,false,false];//배열을 이용할 수도있다.
 
 id.addEventListener("blur", function(){
-    if(id.value==""){
-        out.innerText=" ID를 입력해주세요.";
-        out.className="f";
-        checkResults[0]=false;
-    }else if(id.value.length>10){
-        out.innerText=" 아이디는 10글자까지만 가능합니다.";
-        out.className="f";
-        checkResults[0]=false;
-    }else{
-        out.innerText="사용가능합니다.";
-        out.className="s";
-        checkResults[0]=true;
-        
-    }
+  
+    fetch("./idtest?id="+id.value, {
+        method:"get"
+    })
+    .then((response)=>{return response.text()
+    })
+    .then((r)=>{
+        if(r.trim()=='1'){
+        	out.innerHTML="이미 사용중인 아이디입니다.";
+            out.className="f";
+            checkResults[6]=false;
+        }else{
+        	alert("중복아님");
+            if(id.value==""){
+                out.innerText=" ID를 입력해주세요.";
+                out.className="f";
+                checkResults[0]=false;
+                checkResults[6]=true;
+            }else if(id.value.length>10){
+                out.innerText=" 아이디는 10글자까지만 가능합니다.";
+                out.className="f";
+                checkResults[0]=false;
+                checkResults[6]=true;
+            }else{
+                out.innerText="사용가능합니다.";
+                out.className="s";
+                checkResults[0]=true;
+                checkResults[6]=true;
+                
+            }
+        }
+    })
+    
 
 });
+
 
 pw.addEventListener("blur", function(){
     if(pw.value==""){
@@ -119,7 +139,7 @@ btn.addEventListener("click", function(){
     if(!c){
         //form 전송
         console.log("form 전송해");
-        frm.submit();
+       //frm.submit();
     }else{
         alert("필수 항목은 입력해");
     }

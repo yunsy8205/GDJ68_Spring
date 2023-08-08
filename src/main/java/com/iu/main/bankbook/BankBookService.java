@@ -22,6 +22,19 @@ public class BankBookService {
 	@Autowired
 	private FileManager fileManager;
 	
+	
+	public int setFileDelete(BankBookFileDTO bankBookFileDTO, HttpSession session) throws Exception{
+		bankBookFileDTO=bankBookDAO.getFileDetail(bankBookFileDTO, session);
+		boolean flag = fileManager.fileDelete(bankBookFileDTO, "/resources/upload/bankbook/", session);
+		
+		if(flag) {
+			
+			return bankBookDAO.setFileDelete(bankBookFileDTO);
+		}
+		
+		return 0;
+	}
+	
 	public List<BankBookDTO> getList(Pager pager) throws Exception{
 //		Map<String, Integer> map = new HashMap<String, Integer>();
 		//page     startRow      lastRow
@@ -73,8 +86,26 @@ public class BankBookService {
 		return bankBookDAO.setDelete(num);
 	}
 	
-	public int setUpdate(BankBookDTO bankBookDTO)throws Exception{
-		return bankBookDAO.setUpdate(bankBookDTO);
+	public int setUpdate(BankBookDTO bankBookDTO, MultipartFile[]files, HttpSession session)throws Exception{
+		int result = bankBookDAO.setUpdate(bankBookDTO);
+		String path="/resources/upload/bankbook/";
+		for(MultipartFile multipartFile: files) {// 배열이라서 for 문을 사용한다.
+			
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(multipartFile, session, path);
+			BankBookFileDTO bankBookFileDTO = new BankBookFileDTO();
+			bankBookFileDTO.setBookNum(bankBookDTO.getBookNum());
+			bankBookFileDTO.setOriginalName(multipartFile.getOriginalFilename());
+			bankBookFileDTO.setFileName(fileName);
+			
+			result = bankBookDAO.setFileAdd(bankBookFileDTO);
+			
+		}
+
+		return result;
 	}
 	
 }

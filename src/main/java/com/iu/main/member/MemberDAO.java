@@ -26,5 +26,9 @@ public class MemberDAO {
 	public int setMemberUPdate(MemberDTO memberDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"setMemberUpdate", memberDTO);
 	}
+	
+	public Long getIdTest(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getIdTest", memberDTO);
+	}
 
 }

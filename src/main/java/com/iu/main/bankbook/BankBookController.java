@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,15 @@ import com.iu.main.util.Pager;
 public class BankBookController {
 	@Autowired
 	private BankBookService bankBookService;
+	
+	@GetMapping("fileDelete")
+	public String setFileDelete(BankBookFileDTO bankBookFileDTO, Model model, HttpSession session) throws Exception{
+		
+		// db
+		int result = bankBookService.setFileDelete(bankBookFileDTO, session);
+		model.addAttribute("result", result);
+		return "commons/ajaxResult";
+	}
 	
 	@RequestMapping(value="list", method = RequestMethod.GET)
 	public String getList(Pager pager, Model model) throws Exception{
@@ -79,12 +89,10 @@ public class BankBookController {
 	
 	//update
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(BankBookDTO bankBookDTO)throws Exception{
-		int result = bankBookService.setUpdate(bankBookDTO);
+	public String setUpdate(BankBookDTO bankBookDTO, MultipartFile[] photos, HttpSession session)throws Exception{
+		int result = bankBookService.setUpdate(bankBookDTO, photos, session);
 		return "redirect:./detail?bookNum="+bankBookDTO.getBookNum();
 		
 	}
 	
-	
-
 }

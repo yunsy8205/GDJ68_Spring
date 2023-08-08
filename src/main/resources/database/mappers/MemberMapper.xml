@@ -44,5 +44,9 @@
 		PW=#{pw}, NAME=#{name}, EMAIL=#{email}, BIRTH=#{birth}
 		WHERE ID=#{id}
 	</update>
+		
+	<select id="getIdTest" resultType="java.lang.Long" parameterType="memberDTO">
+		SELECT COUNT(ID) FROM MEMBER_TBL WHERE ID = #{id}
+	</select>
 
   </mapper>

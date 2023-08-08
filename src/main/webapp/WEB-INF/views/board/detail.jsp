@@ -59,8 +59,12 @@
 				<button data-url="reply" class="c1" id="reply">답글</button>
 			</c:if><!-- 서브릿으로 이동 -->
 		</form>
-		<script src="../resources/js/delete.js"></script>
+		
+		<div id ="comment">
+		
+		</div>
 	</section>
+	<script src="../resources/js/delete.js"></script>
 	
 </body>
 </html>
