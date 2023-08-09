@@ -47,9 +47,8 @@
 
 	<div id="productList"></div>
 
-		<div class="alert alert-light" role="alert">
-			<input type="text" id="contents">
-		  </div>
+		<input class="alert alert-light" role="alert" type="text" id="contents">
+
 	<button class="btn btn-danger" type="button" id="commentbtn">댓글입력</button>
 	
 	<script src="../resources/js/delete.js"></script>
@@ -63,8 +62,27 @@
 		const contents = document.getElementById("contents");
 
 		bookComment();
-
+		
 		commentbtn.addEventListener("click", function(){
+			fetch("../comment/add", {
+				method:"POST",
+		        headers: {
+		            'Content-Type': 'application/x-www-form-urlencoded'
+		        },
+		        body: ?bookNum="+bookNum+"&contents="+contents.value
+			})
+			.then((response)=>{return response.text()
+			})//응답받음
+			.then((r)=>{
+				
+				if(r==1){
+					bookComment();
+					contents.value="";
+				}
+			});
+		})
+
+		<!-- commentbtn.addEventListener("click", function(){
 			fetch("../comment/add?bookNum="+bookNum+"&contents="+contents.value, {method:"get"})
 			.then((response)=>{return response.text()
 			})//응답받음
@@ -72,9 +90,10 @@
 				
 				if(r==1){
 					bookComment();
+					contents.value="";
 				}
 			});
-		})
+		})-->
 
 		function bookComment(){
 			fetch("../comment/list?bookNum="+bookNum, {

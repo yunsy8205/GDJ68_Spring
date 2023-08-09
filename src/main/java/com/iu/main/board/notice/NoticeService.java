@@ -59,7 +59,7 @@ public class NoticeService implements BoardService{
 		return noticeDAO.getDetail(boardDTO);
 	}
 	
-	public int setUpdate(BoardDTO boardDTO) throws Exception{
+	public int setUpdate(BoardDTO boardDTO, MultipartFile [] files, HttpSession session) throws Exception{
 		return noticeDAO.setUpdate(boardDTO);
 	}
 	

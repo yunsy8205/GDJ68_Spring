@@ -85,8 +85,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(NoticeDTO noticeDTO) throws Exception{
-		int result = noticeService.setUpdate(noticeDTO);
+	public String setUpdate(NoticeDTO noticeDTO, MultipartFile [] photos, HttpSession session) throws Exception{
+		int result = noticeService.setUpdate(noticeDTO, photos, session);
 		return "redirect:./detail?num="+noticeDTO.getNum();		
 	}
 	

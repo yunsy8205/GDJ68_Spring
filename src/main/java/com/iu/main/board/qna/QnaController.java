@@ -94,8 +94,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(QnaDTO qnaDTO) throws Exception{
-		int result = qnaService.setUpdate(qnaDTO);
+	public String setUpdate(QnaDTO qnaDTO, MultipartFile [] photos, HttpSession session) throws Exception{
+		int result = qnaService.setUpdate(qnaDTO, photos, session);
 		
 		return "redirect:./detail?num="+qnaDTO.getNum();
 	}
