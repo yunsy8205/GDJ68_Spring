@@ -4,10 +4,10 @@
 <c:import url="../temp/bootstrap.jsp"></c:import>
 	<section class="container mt-5">
 		<h1 class="mb-3 text-center">댓글</h1>
-		<table class="table">
-			<thead class="table-dark">
+		<!-- <table class="table"> -->
+			<!-- <thead class="table-dark">
 				<th>ID</th><th>COMMENT</th><th>DATE</th>
-			</thead>
+			</thead> -->
 			<tbody class="table-light">
 				<c:forEach items="${requestScope.list}" var="d" varStatus="i">
 				<!--list의 크기만큼 반복실행 / d는 변수명 여기서는 전달된 DTO객체 이다.-->
@@ -18,7 +18,7 @@
 					</tr>
 				</c:forEach>
 			</tbody>
-		</table>
+		<!-- </table> -->
 		
 <!-- 		<nav aria-label="Page navigation example">
 		  <ul class="pagination">

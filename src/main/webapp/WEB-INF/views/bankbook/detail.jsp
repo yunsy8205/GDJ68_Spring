@@ -45,31 +45,52 @@
 	<a class="btn btn-danger" href="../bookaccount/add?bookNum=${dto.bookNum}">상품가입</a>
 	<button class="btn btn-danger" id="add">상품가입</button>
 
-	<div id="productList"></div>
-
+	<div>
+		<table id="productList" class="table">
+		</table>
+	</div>
+	<!-- 댓글 -->
 		<input class="alert alert-light" role="alert" type="text" id="contents">
 
 	<button class="btn btn-danger" type="button" id="commentbtn">댓글입력</button>
 	
 	<script src="../resources/js/delete.js"></script>
-	<script type="text/javascript">
-		setBookNum(${dto.bookNum});
 	
-		// 스크립트 코드가 아니라서 에러가 발생하지만 무시
+	<script type="text/javascript">
+		// setBookNum(${dto.bookNum});
+	
+		//스크립트 코드가 아니라서 에러가 발생하지만 무시
 		const add = document.getElementById("add");
 		const productList = document.getElementById("productList");
 		const commentbtn = document.getElementById("commentbtn");
 		const contents = document.getElementById("contents");
 
-		bookComment();
-		
+		bookComment($('#del').attr('data-delete-num'),1);
+		// $('#commentbtn').click(function(){
+		// 	$ajax({
+		// 		type:'post',
+		// 		url: "../comment/add",
+		// 		data:{
+		// 			bookNum:$('#del').attr('data-delete-num'),
+		// 			contents:$('#contents').val()
+		// 	},
+		// 	success:function(response){
+		// 		if(response==1){
+		// 			bookComment();
+		// 			$('#contents').val("");
+		// 		}
+		// 	},error:function(){
+		// 		alert('관리자에게 문의');
+		// 	}
+		// 	})
+		// })
 		commentbtn.addEventListener("click", function(){
 			fetch("../comment/add", {
-				method:"POST",
+				method:"post",
 		        headers: {
-		            'Content-Type': 'application/x-www-form-urlencoded'
+		            "Content-type":"application/x-www-form-urlencoded"
 		        },
-		        body: ?bookNum="+bookNum+"&contents="+contents.value
+		        body: "bookNum="+bookNum+"&contents="+contents.value
 			})
 			.then((response)=>{return response.text()
 			})//응답받음
@@ -82,31 +103,47 @@
 			});
 		})
 
-		<!-- commentbtn.addEventListener("click", function(){
-			fetch("../comment/add?bookNum="+bookNum+"&contents="+contents.value, {method:"get"})
-			.then((response)=>{return response.text()
-			})//응답받음
-			.then((r)=>{
-				
-				if(r==1){
-					bookComment();
-					contents.value="";
+		// function bookComment(){
+		// 	$ajax({
+		// 		type:'get',
+		// 		url: "../comment/list",
+		// 		data:{
+		// 			bookNum:bookNum,
+		// 	},
+		// 	success:function(response){
+		// 			$('#productList').html(response);
+		// 	},error:function(){
+		// 		alert('관리자에게 문의');
+		// 	}
+		// 	})
+		// }
+
+		function bookComment(bookNum, page){
+			$.ajax({
+				type:"get",
+				url:"./commentList",
+				data:{
+					bookNum:bookNum,
+					page:page
+				},
+				success:function(result){
+					$('#productList').append(result);
 				}
-			});
-		})-->
-
-		function bookComment(){
-			fetch("../comment/list?bookNum="+bookNum, {
-				method:"get"
 			})
-			.then((response)=>{return response.text()
-			})//응답받음
-			.then((r)=>{
-				
-				productList.innerHTML=r;
-			});
-
 		}
+
+		// function bookComment(){
+		// 	fetch("../comment/list?bookNum="+bookNum, {
+		// 		method:"get"
+		// 	})
+		// 	.then((response)=>{return response.text()
+		// 	})//응답받음
+		// 	.then((r)=>{
+				
+		// 		productList.innerHTML=r;
+		// 	});
+
+		// }
 
 		add.addEventListener("click", function(){
 			//자바스크립트에는 폼태그가 없다. 부트스트랩 모달이용
@@ -132,6 +169,8 @@
 				}
 			}
 		});
+		
+		
 
 
 

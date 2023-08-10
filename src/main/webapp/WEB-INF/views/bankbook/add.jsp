@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <c:import url="../temp/bootstrap.jsp"></c:import>
 <c:import url="../temp/header.jsp"></c:import>
 </head>
@@ -23,13 +24,10 @@
 			판매중지 <input type="radio" value="0" name="bookSale" class="form-check-input"><br>
 		</p>
 		
+		<div id="fileList" class="my-5">
+		</div>
 		<div>
-		<label for="pic">사진첨부</label>
-		<input type="file" name="photos" id="pic" class="form-control"><br>
-		<label for="pic">사진첨부</label>
-		<input type="file" name="photos" id="pic" class="form-control"><br>
-		<label for="pic">사진첨부</label>
-		<input type="file" name="photos" id="pic" class="form-control"><br>
+			<button type="button" id="btn2" class="btn btn-outline-danger my-3">File 추가</button>
 		</div>
 	<!--<p>
 			<select name="bookSale">
@@ -43,6 +41,6 @@
 		<input class="btn btn-danger" type="reset" value="reset">
 		<input class="btn btn-danger" type="button" value ="ADD">
 	</form>
-
+	<script src="../resources/js/file.js"></script>
 </body>
 </html>
