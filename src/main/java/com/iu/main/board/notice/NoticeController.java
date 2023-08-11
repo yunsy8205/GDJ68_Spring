@@ -7,12 +7,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.main.board.BoardDTO;
+import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
 @Controller
@@ -95,5 +98,26 @@ public class NoticeController {
 		int result = noticeService.setDelete(noticeDTO);
 		return "redirect:./list";
 	}
+	
+	//작성중 이미지 올리기
+	@PostMapping("setContentsImg")
+	public String setContentsImg(MultipartFile files, HttpSession session, Model model)throws Exception{
+
+		String path = noticeService.setContentsImg(files, session);
+		model.addAttribute("result", path);
+		System.out.println(path);
+		return "commons/ajaxResult";
+	}
+	
+	//작성중 이미지 삭제
+	@PostMapping("setContentsImgDelete")
+	public String setContentsImgDelete(String path, HttpSession session, Model model)throws Exception{
+		boolean check = noticeService.setContentsImgDelete(path,session);
+		model.addAttribute("result", check);
+		
+		return "commons/ajaxResult";
+	}
+
+
 
 }

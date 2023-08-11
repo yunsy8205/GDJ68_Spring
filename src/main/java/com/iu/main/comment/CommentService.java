@@ -17,6 +17,7 @@ public class CommentService {
 	
 	public List<CommentDTO> getList(CommentDTO commentDTO, Pager pager)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
+		pager.setPerPage(2L);
 		pager.makeRowNum();
 		pager.makePageNum(commentDAO.getTotal(commentDTO));
 		map.put("pager", pager);

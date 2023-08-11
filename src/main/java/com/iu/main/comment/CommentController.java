@@ -23,8 +23,10 @@ public class CommentController {
 	
 	@GetMapping("list")
 	public void getList(CommentDTO commentDTO, Pager pager, Model model) throws Exception{
+
 		List<CommentDTO> ar = commentService.getList(commentDTO, pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		
 	}
 	
@@ -32,8 +34,9 @@ public class CommentController {
 	public String setAdd(CommentDTO commentDTO, HttpSession session, Model model) throws Exception{
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		commentDTO.setId(memberDTO.getId());
+		System.out.println(commentDTO.getId());
 		int result = commentService.setAdd(commentDTO);
-		
+		System.out.println(result);
 		model.addAttribute("result", result);
 		
 		return "commons/ajaxResult";
