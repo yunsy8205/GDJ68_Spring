@@ -21,8 +21,56 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<beans:bean class="com.iu.main.interceptors.InterceptorTest1"></beans:bean>
+	<beans:bean class="com.iu.main.interceptors.LoginInterceptor"></beans:bean>
+	<!-- Interceptor 설정 -->
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/qna/*"/>
+			<mapping path="/member/*"/>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/notice/detail"/>
+			<exclude-mapping path="/member/login"/>
+			<exclude-mapping path="/member/join"/>
+			<exclude-mapping path="/member/logout"/>
+			<exclude-mapping path="/qna/list"/>
+			<beans:ref bean="li"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notice/update"/>
+			<mapping path="/qna/update"/>
+			<beans:bean class="com.iu.main.interceptors.OwnerInterceptor"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notice/add"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
+			<beans:ref bean="adminInterceptor"/>
+		</interceptor>
+		
+		<!-- 테스트<interceptor>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/add"/>
+			<beans:ref bean="interceptorTest1"/>	
+		</interceptor>  -->
+		
+		<!--  <interceptor>
+			<mapping path="/notice/*"/>
+			<beans:bean class="com.iu.main.interceptors.InterceptorTest1"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notice/*"/>
+			<mapping path="/qna/*"/>
+			<beans:ref bean="interceptorTest1"/>
+		</interceptor>-->
+		
+	</interceptors>
+	
 	<context:component-scan base-package="com.iu.main" />
-	
-	
 	
 </beans:beans>

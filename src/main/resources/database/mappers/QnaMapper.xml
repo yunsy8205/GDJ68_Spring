@@ -88,13 +88,13 @@
   </update>
   
   <delete id="setDelete" parameterType="QnaDTO">
-  	DELETE QNA WHERE NUM=#{num}	
+  	DELETE QNA WHERE NUM=#{num} AND AND WRITER=#{name}
   </delete>
 
   <update id="setUpdate" parameterType="QnaDTO">
   	UPDATE QNA SET
   	TITLE=#{subject}, WRITER=#{name}, CONTENTS=#{contents}
-  	WHERE NUM=#{num}
+  	WHERE NUM=#{num} AND WRITER=#{name}
   </update>
   
   </mapper>
