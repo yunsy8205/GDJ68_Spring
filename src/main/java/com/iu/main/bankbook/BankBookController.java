@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,11 @@ import com.iu.main.util.Pager;
 public class BankBookController {
 	@Autowired
 	private BankBookService bankBookService;
+	
+	@ModelAttribute("bankbook")
+	public String getBoardName() {
+		return "bankbook";
+	}// @ModelAttribute를 해주면 모든 메서드마다 리턴해줄 때 모델에 담김.
 	
 	@GetMapping("fileDelete")
 	public String setFileDelete(BankBookFileDTO bankBookFileDTO, Model model, HttpSession session) throws Exception{
@@ -93,6 +99,15 @@ public class BankBookController {
 		int result = bankBookService.setUpdate(bankBookDTO, photos, session);
 		return "redirect:./detail?bookNum="+bankBookDTO.getBookNum();
 		
+	}
+	
+	@GetMapping("fileDown")
+	public String getFileDown(BankBookFileDTO bankBookFileDTO, Model model)throws Exception{// 리턴이 jsp, url 둘다 아님
+		bankBookFileDTO = bankBookService.getFileDown(bankBookFileDTO);
+		//또다른 뷰를 만들 수 있다.
+		model.addAttribute("file", bankBookFileDTO);
+		return "fileManager";
+
 	}
 	
 }

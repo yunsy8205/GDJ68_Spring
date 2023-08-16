@@ -23,7 +23,7 @@ public class BankBookDAO {
 	//BankBookMapper와 같은것을 씀
 	private final String NAMESPACE="com.iu.main.bankbook.BankBookDAO.";
 	
-	public BankBookFileDTO getFileDetail(BankBookFileDTO bankBookFileDTO, HttpSession session) throws Exception{
+	public BankBookFileDTO getFileDetail(BankBookFileDTO bankBookFileDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getFileDetail", bankBookFileDTO);
 	}
 	

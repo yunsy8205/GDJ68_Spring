@@ -24,7 +24,7 @@ public class BankBookService {
 	
 	
 	public int setFileDelete(BankBookFileDTO bankBookFileDTO, HttpSession session) throws Exception{
-		bankBookFileDTO=bankBookDAO.getFileDetail(bankBookFileDTO, session);
+		bankBookFileDTO=bankBookDAO.getFileDetail(bankBookFileDTO);
 		boolean flag = fileManager.fileDelete(bankBookFileDTO, "/resources/upload/bankbook/", session);
 		
 		if(flag) {
@@ -108,4 +108,7 @@ public class BankBookService {
 		return result;
 	}
 	
+	public BankBookFileDTO getFileDown(BankBookFileDTO bankBookFileDTO) throws Exception{
+		return bankBookDAO.getFileDetail(bankBookFileDTO);
+	}
 }

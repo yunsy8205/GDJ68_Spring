@@ -34,7 +34,8 @@
 	</c:choose>
 	
 	<c:forEach items="${dto.fileDTOs}" var="f">
-		<img alt="" src="../../resources/upload/bankbook/${f.fileName}">
+
+		<a href="./fileDown?fileNum=${f.fileNum}">${f.originalName}</a>
 	</c:forEach>
 	
 	<a class="btn btn-danger" href="./update?bookNum=${dto.bookNum}">수정</a>

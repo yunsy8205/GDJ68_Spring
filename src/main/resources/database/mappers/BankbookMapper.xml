@@ -94,7 +94,7 @@
 	</delete>
 	
 	<select id="getFileDetail" parameterType="BankBookFileDTO" resultType="BankBookFileDTO">
-		SELECT FILENUM, FILENAME FROM BANKFILE WHERE FILENUM = #{fileNum}
+		SELECT FILENUM, FILENAME, ORIGINALNAME FROM BANKFILE WHERE FILENUM = #{fileNum}
 	</select>
 		
   </mapper>
