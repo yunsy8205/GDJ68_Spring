@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -117,6 +118,23 @@ public class NoticeController {
 		
 		return "commons/ajaxResult";
 	}
+	
+	//--------------------------------------exception
+	
+//	@ExceptionHandler(NullPointerException.class)
+//	public String serverError()throws Exception{
+//	//throw exception한 것을 받아서 처리
+//		return "view name";
+//	}
+//	
+//	@ExceptionHandler(Exception.class)
+//	public String serverError2(Exception ex,Model model)throws Exception{
+//		//매개변수로 발생한 exception 객체를 받을 수 있다.(어떤 에러인지 확인)
+//		ex.getMessage();
+//		//모델을 통해서 jsp로 보낼 수 있다.
+//		//특정한 예외 이외의 에러를 모두 합친 것 처리
+//		return "view name";
+//	}
 
 
 

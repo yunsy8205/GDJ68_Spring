@@ -46,7 +46,7 @@ public class NoticeService implements BoardService{
 		pager.makePageNum(total);//게시물의 갯수(행의 총 갯수)를 이용해 전체페이지수와 전체페이지블럭수 구하기
 								//현재 페이지번호에 맞는 페이지블록번호 구하기
 								//현재 블럭번호의 시작페이지번호아 끝페이지번호 구하기
-		
+		pager.setStartRow(null);
 		return noticeDAO.getList(pager);
 	}
 	
